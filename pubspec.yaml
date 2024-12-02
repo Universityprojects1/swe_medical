@@ -57,6 +57,7 @@ dependencies:
   # Declarative routing for Flutter
   go_router: ^14.6.1
   get_it: ^8.0.2
+  firebase_core: ^3.8.0
   # iOS style icons
   cupertino_icons: ^1.0.8
 

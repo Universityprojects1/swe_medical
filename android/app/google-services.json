@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "731767889577",
+    "project_id": "swe-mediacl",
+    "storage_bucket": "swe-mediacl.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731767889577:android:bc37610e4222d59fc813b8",
+        "android_client_info": {
+          "package_name": "com.example.swe_medical"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx6BCnRcMvEdajZwY6nuo8vjGAvS6lq04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
