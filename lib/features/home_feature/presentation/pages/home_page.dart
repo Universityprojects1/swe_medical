@@ -23,56 +23,60 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(13.0),
-        child: Column(
-          children: [
-            Theme(
-              data: ThemeData(
-                colorScheme: ColorScheme.fromSeed(
-                  brightness: Brightness.light,
-                  seedColor: AppColor.primaryColor,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              Theme(
+                data: ThemeData(
+                  colorScheme: ColorScheme.fromSeed(
+                    brightness: Brightness.light,
+                    seedColor: AppColor.primaryColor,
+                  ),
+                ),
+                child: EasyDateTimeLinePicker(
+                  focusedDate: DateTime.now(),
+                  firstDate: DateTime(2024, 3, 18),
+                  lastDate: DateTime(2030, 3, 18),
+                  onDateChange: (date) {
+                    // Handle the selected date.
+                  },
                 ),
               ),
-              child: EasyDateTimeLinePicker(
-                focusedDate: DateTime.now(),
-                firstDate: DateTime(2024, 3, 18),
-                lastDate: DateTime(2030, 3, 18),
-                onDateChange: (date) {
-                  // Handle the selected date.
-                },
-              ),
-            ),
-            const Gap(10),
-
-            TimesSlotGridViewFromInterval(
-              selectedColor: AppColor.primaryColor,
-              locale: "en",
-              initTime: selectedDate,
-              crossAxisCount: 4,
-              timeSlotInterval: const TimeSlotInterval(
-                start: TimeOfDay(hour: 10, minute: 00),
-                end: TimeOfDay(hour: 22, minute: 0),
-                interval: Duration(hours: 0, minutes: 30),
-              ),
-              onChange: (value) {
-                setState(() {
-                  selectedDate = value;
-                });
-              },
-            ),
-            Spacer(),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColor.primaryColor,
+              const Gap(10),
+              TimesSlotGridViewFromInterval(
+                selectedColor: AppColor.primaryColor,
+                locale: "en",
+                initTime: selectedDate,
+                crossAxisCount: 4,
+                timeSlotInterval: const TimeSlotInterval(
+                  start: TimeOfDay(hour: 10, minute: 00),
+                  end: TimeOfDay(hour: 22, minute: 0),
+                  interval: Duration(hours: 0, minutes: 30),
                 ),
-                onPressed: () {
-                  // Navigate to the next page.
+                onChange: (value) {
+                  setState(() {
+                    selectedDate = value;
+                  });
                 },
-                child: const Text('Book Appointment'),
               ),
-            ),
-          ],
+              const Gap(10),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: AppColor.primaryColor,
+                  ),
+                  onPressed: () {
+                    // Navigate to the next page.
+                  },
+                  child: const Text(
+                    'Book Appointment',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
