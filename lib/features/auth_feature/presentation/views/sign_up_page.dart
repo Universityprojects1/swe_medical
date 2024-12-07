@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/app_bar.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/custom_button.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/custom_text_field.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/sign_in_or_sign_up.dart';
+
+import '../../../../config/routes/routes.dart';
 
 
 
@@ -19,31 +22,36 @@ class SignUpPage extends StatelessWidget {
           padding: EdgeInsets.symmetric(
               horizontal: MediaQuery.sizeOf(context).width * .08,
               vertical: MediaQuery.sizeOf(context).height * .03),
-          child: const Column(
+          child:  Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomTextField(text: "Your name", title: "Full Name"),
-              Gap(15),
-              CustomTextField(text: "example@example.com", title: "Email"),
-              Gap(15),
-              CustomTextField(
+              const CustomTextField(text: "Your name", title: "Full Name"),
+              const Gap(15),
+              const CustomTextField(text: "example@example.com", title: "Email"),
+              const Gap(15),
+              const CustomTextField(
                 text: "***************",
                 title: "Password",
                 isPassword: true,
               ),
-              Gap(15),
-              CustomTextField(text: "Your Number", title: "Mobile Number"),
-              Gap(30),
-              Align(
+              const Gap(15),
+              const CustomTextField(text: "Your Number", title: "Mobile Number"),
+              const Gap(30),
+              const Align(
                 alignment: Alignment.center,
                 child: CustomButton(
                   title: "Sign Up",
                 ),
               ),
-              Gap(30),
-              SignInOrSignUp(
-                text_1: "already have an account? ",
-                text_2: "Log in",
+              const Gap(30),
+              InkWell(
+                onTap: () {
+                  GoRouter.of(context).pushReplacement(AppRoute.signIn);
+                },
+                child: const SignInOrSignUp(
+                  text_1: "already have an account? ",
+                  text_2: "Log in",
+                ),
               )
             ],
           ),
