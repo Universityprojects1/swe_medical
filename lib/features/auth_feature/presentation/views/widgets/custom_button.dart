@@ -11,13 +11,11 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height:MediaQuery.sizeOf(context).height * .08 ,
       decoration: const BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(32)),
           color: AppColor.primaryColor),
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.sizeOf(context).width * .2,
-            vertical: MediaQuery.sizeOf(context).height * .015),
+      child: Center(
         child: Text(
           title,
           style: const TextStyle(
