@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
+import 'package:swe_medical/config/routes/routes.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
+import 'package:swe_medical/features/home_layout_feature/presentation/manger/home_layout_cubit.dart';
 
 import '../../../../generated/assets.dart';
 
@@ -51,6 +54,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       hasNotch: true,
       currentIndex: selectedIndex,
       onTap: (index) {
+         context.read<HomeLayoutCubit>().changePage(index);
         setState(() {
           selectedIndex = index;
         });
