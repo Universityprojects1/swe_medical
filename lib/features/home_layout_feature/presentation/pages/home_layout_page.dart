@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:stylish_bottom_bar/stylish_bottom_bar.dart';
+
+import '../widgets/bottom_nav_bar.dart';
 
 class HomeLayoutPage extends StatelessWidget {
   const HomeLayoutPage({super.key});
@@ -15,6 +18,7 @@ class HomeLayoutPage extends StatelessWidget {
           style: TextStyle(fontSize: 20),
         ),
       ),
+      bottomNavigationBar: const BottomNavBar(),
     );
   }
 }
