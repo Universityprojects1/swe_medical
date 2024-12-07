@@ -5,6 +5,7 @@ class Assets {
   static const String imagesBooking = 'assets/images/Booking.svg';
   static const String imagesHome = 'assets/images/Home.svg';
   static const String imagesMessages = 'assets/images/Messages.svg';
+  static const String imagesSplash = 'assets/images/splash.svg';
   static const String imagesUserProfile = 'assets/images/User_Profile.svg';
 
 }
