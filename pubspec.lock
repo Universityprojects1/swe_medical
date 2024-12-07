@@ -214,6 +214,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.9"
+  easy_date_timeline:
+    dependency: "direct main"
+    description:
+      name: easy_date_timeline
+      sha256: c6103e6487e9bf04f991ea762eff14672c2c111e80a5a4b0e308540a202a62c2
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.4"
   fake_async:
     dependency: transitive
     description:
@@ -299,6 +307,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.0.0"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_secure_storage:
     dependency: "direct main"
     description:
@@ -473,10 +486,10 @@ packages:
     dependency: "direct main"
     description:
       name: intl
-      sha256: "00f33b908655e606b86d2ade4710a231b802eec6f11e87e4ea3783fd72077a50"
+      sha256: d6f56758b7d3014a48af9701c085700aac781a92a87a62b1333b46d8879661cf
       url: "https://pub.dev"
     source: hosted
-    version: "0.20.1"
+    version: "0.19.0"
   io:
     dependency: transitive
     description:
@@ -826,6 +839,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.7.2"
+  time_slot:
+    dependency: "direct main"
+    description:
+      name: time_slot
+      sha256: eee91c29541a604e2ad47f548f92ee89e91e28c0fbda362e1bfc3dac6e5f351c
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   timing:
     dependency: transitive
     description:

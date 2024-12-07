@@ -5,7 +5,7 @@ import 'package:swe_medical/features/chat_feature/chat_page.dart';
 import 'package:swe_medical/features/profile_feature/profile_page.dart';
 import 'package:swe_medical/features/reminder_feature/reminder_page.dart';
 
-import '../../../home_feature/home_page.dart';
+import '../../../home_feature/presentation/pages/home_page.dart';
 
 part 'home_layout_state.dart';
 
