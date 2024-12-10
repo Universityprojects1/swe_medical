@@ -22,7 +22,7 @@ class TotalAmountWidget extends StatelessWidget {
           gradient: LinearGradient(
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
-              colors: [Color(0xff33E4DB), AppColor.primaryColor])),
+              colors: [AppColor.whitePrimaryColor, AppColor.primaryColor])),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
