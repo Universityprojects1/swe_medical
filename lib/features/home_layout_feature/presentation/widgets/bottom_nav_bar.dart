@@ -21,7 +21,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return StylishBottomBar(
-       backgroundColor: AppColor.NavBarColor,
+       backgroundColor: AppColor.lightPrimaryColor,
       option: DotBarOptions(),
       items: [
         BottomBarItem(

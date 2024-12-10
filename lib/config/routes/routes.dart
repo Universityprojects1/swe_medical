@@ -4,16 +4,18 @@ import 'package:swe_medical/features/auth_feature/presentation/views/forget_page
 import 'package:swe_medical/features/auth_feature/presentation/views/sign_up_page.dart';
 import 'package:swe_medical/features/home_layout_feature/presentation/manger/home_layout_cubit.dart';
 import 'package:swe_medical/features/home_layout_feature/presentation/pages/home_layout_page.dart';
+import 'package:swe_medical/features/payment_feature/pages/payment_page.dart';
 import 'package:swe_medical/features/splash_feature/spalsh_page.dart';
 
 import '../../features/auth_feature/presentation/views/sign_in_page.dart';
 
 class AppRoute {
-  static const splash = '/';
+  static const splash = '/a';
   static const homeLayout = '/homeLayout';
   static const signIn = '/SignIn';
   static const signUp = '/SignUp';
   static const forgetPassword = '/ForgetPassword';
+  static const payment = '/';
   static final router = GoRouter(
     routes: [
       GoRoute(
@@ -38,6 +40,9 @@ class AppRoute {
       GoRoute(
         path: forgetPassword,
         builder: (context, state) => const ForgetPage(),
+      ),GoRoute(
+        path: payment,
+        builder: (context, state) => const PaymentPage(),
       ),
     ],
   );
