@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
-import 'package:swe_medical/features/payment_feature/widgets/pay_button_widget.dart';
-import '../widgets/doctor_full_info_widget.dart';
-import '../widgets/payment_info_widget.dart';
-import '../widgets/total_amount_widget.dart';
+import '../widgets/payment_page_widgets/doctor_full_info_widget.dart';
+import '../widgets/payment_page_widgets/gradient_pay_button_widget.dart';
+import '../widgets/payment_page_widgets/payment_info_widget.dart';
+import '../widgets/payment_page_widgets/total_amount_widget.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
@@ -25,12 +25,9 @@ class PaymentPage extends StatelessWidget {
             endIndent: 30,
           ),
           PaymentInfoWidget(),
-          PayButtonWidget()
+          GradientPayButtonWidget()
         ],
       ),
     );
   }
 }
-
-
-
