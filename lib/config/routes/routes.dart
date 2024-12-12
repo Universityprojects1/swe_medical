@@ -17,7 +17,7 @@ class AppRoute {
   static const signUp = '/SignUp';
   static const forgetPassword = '/ForgetPassword';
   static const payment = '/payment';
-  static const congratulationPayment = '/';
+  static const congratulationPayment = '/congratulation_payment';
   static final router = GoRouter(
     routes: [
       GoRoute(
