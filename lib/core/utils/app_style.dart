@@ -1,7 +1,22 @@
-
 import 'package:flutter/material.dart';
+import 'package:swe_medical/core/utils/app_color.dart';
 
 class AppStyle {
+  static TextStyle style16MediumPrimaryColor(BuildContext context) {
+    return TextStyle(
+      color: AppColor.primaryColor,
+      fontWeight: FontWeight.w500,
+      fontSize: responsiveFont(fontSize: 16, context: context),
+    );
+  }
+  static TextStyle style14LightBlack(BuildContext context) {
+    return TextStyle(
+      color: AppColor.blackColor,
+      fontWeight: FontWeight.w400,
+      fontSize: responsiveFont(fontSize: 14, context: context),
+    );
+
+  }
 
   static double scaleFactor(double width) {
     if (width < 500) {
