@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import '../../../core/utils/app_color.dart';
 import '../../../core/utils/app_style.dart';
 
-
-
 class TotalAmountWidget extends StatelessWidget {
   const TotalAmountWidget({
     super.key,
@@ -18,11 +16,13 @@ class TotalAmountWidget extends StatelessWidget {
       width: double.maxFinite,
       height: MediaQuery.maybeOf(context)!.size.height * 0.2,
       decoration: const BoxDecoration(
-          color: AppColor.primaryColor,
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [AppColor.whitePrimaryColor, AppColor.primaryColor])),
+        color: AppColor.primaryColor,
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [AppColor.whitePrimaryColor, AppColor.primaryColor],
+        ),
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -34,8 +34,7 @@ class TotalAmountWidget extends StatelessWidget {
               )),
           Padding(
             padding: EdgeInsets.symmetric(
-                horizontal:
-                MediaQuery.maybeOf(context)!.size.width * 0.1),
+                horizontal: MediaQuery.maybeOf(context)!.size.width * 0.1),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -43,10 +42,11 @@ class TotalAmountWidget extends StatelessWidget {
                 Text(
                   "Payment",
                   style: TextStyle(
-                      fontSize: AppStyle.responsiveFont(
-                          fontSize: 24, context: context),
-                      color: AppColor.whiteColor,
-                      fontWeight: FontWeight.w600),
+                    fontSize:
+                        AppStyle.responsiveFont(fontSize: 24, context: context),
+                    color: AppColor.whiteColor,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
                 Text(
                   "\$ 100.00",

@@ -11,11 +11,11 @@ import '../../features/auth_feature/presentation/views/sign_in_page.dart';
 
 class AppRoute {
   static const splash = '/a';
-  static const homeLayout = '/homeLayout';
+  static const homeLayout = '/';
   static const signIn = '/SignIn';
   static const signUp = '/SignUp';
   static const forgetPassword = '/ForgetPassword';
-  static const payment = '/';
+  static const payment = '/payment';
   static final router = GoRouter(
     routes: [
       GoRoute(
