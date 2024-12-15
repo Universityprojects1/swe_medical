@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
 import 'package:swe_medical/core/utils/app_style.dart';
+
 import 'doctor_info_sub_info_container_widget.dart';
 class DoctorInfoWidget extends StatelessWidget {
   const DoctorInfoWidget({

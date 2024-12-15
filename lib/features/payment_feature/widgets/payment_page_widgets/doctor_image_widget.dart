@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../generated/assets.dart';
+
+import '../../../../generated/assets.dart';
 class DoctorImageWidget extends StatelessWidget {
   final String imageUrl;
   const DoctorImageWidget({
