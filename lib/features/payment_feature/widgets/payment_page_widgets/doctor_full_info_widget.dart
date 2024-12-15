@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
 import 'doctor_image_widget.dart';
 import 'doctor_info_widget.dart';
+
 class DoctorFullInfoWidget extends StatelessWidget {
   const DoctorFullInfoWidget({
     super.key,
