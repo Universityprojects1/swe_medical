@@ -63,6 +63,12 @@ dependencies:
   stylish_bottom_bar: ^1.1.0
   easy_date_timeline: ^2.0.4
   time_slot: ^1.0.0
+  cloud_firestore:
+  firebase_database:
+  firebase_storage:
+  flutter_screenutil:
+  image_picker: ^1.1.2
+  firebase_auth:
 
 dev_dependencies:
   flutter_test:
