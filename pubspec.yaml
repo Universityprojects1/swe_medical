@@ -68,7 +68,7 @@ dependencies:
   firebase_storage:
   flutter_screenutil:
   image_picker: ^1.1.2
-  firebase_auth:
+  firebase_auth: ^5.3.4
 
 dev_dependencies:
   flutter_test:
