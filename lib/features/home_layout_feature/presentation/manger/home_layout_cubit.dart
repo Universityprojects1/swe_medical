@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:meta/meta.dart';
-import 'package:swe_medical/features/chat_feature/chat_page.dart';
 import 'package:swe_medical/features/profile_feature/profile_page.dart';
 import 'package:swe_medical/features/reminder_feature/reminder_page.dart';
 
+import '../../../chat_feature/chat_screen.dart';
 import '../../../home_feature/presentation/pages/home_page.dart';
 
 part 'home_layout_state.dart';

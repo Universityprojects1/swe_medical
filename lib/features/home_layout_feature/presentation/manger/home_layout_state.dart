@@ -17,7 +17,7 @@ final class ProfilePageState extends HomeLayoutState {
 
 final class MessagePageState extends HomeLayoutState {
   @override
-  Widget get page => const ChatPage();
+  Widget get page => const ChatScreen();
 }
 
 final class ReminderPageState extends HomeLayoutState {
