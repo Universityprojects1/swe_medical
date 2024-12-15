@@ -17,6 +17,14 @@ class AppStyle {
     );
 
   }
+  static TextStyle style24SemiBoldBlack(BuildContext context) {
+    return TextStyle(
+      color: AppColor.whiteColor,
+      fontWeight: FontWeight.w400,
+      fontSize: responsiveFont(fontSize: 25, context: context),
+    );
+
+  }
 
   static double scaleFactor(double width) {
     if (width < 500) {
