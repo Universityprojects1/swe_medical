@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/utils/component/custom_gradient_app_bar_widget.dart';
 import '../widgets/congratulation_payment_page_widgets/appointment_details_widget.dart';
-import '../widgets/congratulation_payment_page_widgets/custom_gradient_app_bar_widget.dart';
 import '../widgets/congratulation_payment_page_widgets/gradient_return_button_widget.dart';
 import '../widgets/congratulation_payment_page_widgets/payment_congratulation_message_widget.dart';
 
@@ -11,7 +11,7 @@ class CongratulationPaymentPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const CustomGradientAppBarWidget(),
+      appBar: const CustomGradientAppBarWidget(title: 'Payment',),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.center,

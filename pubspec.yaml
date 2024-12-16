@@ -69,6 +69,7 @@ dependencies:
   flutter_screenutil:
   image_picker: ^1.1.2
   firebase_auth: ^5.3.4
+  syncfusion_flutter_sliders: ^28.1.33
 
 dev_dependencies:
   flutter_test:
