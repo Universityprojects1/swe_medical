@@ -26,7 +26,7 @@ class PaymentCongratulationMessageWidget extends StatelessWidget {
           blendMode: BlendMode.srcIn,
           child: Icon(
             Icons.check_circle_outline_rounded,
-            size: MediaQuery.maybeOf(context)!.size.height * 0.3,
+            size: MediaQuery.maybeOf(context)!.size.height * 0.25,
             color: Colors.white, // Necessary for ShaderMask
           ),
         ),
