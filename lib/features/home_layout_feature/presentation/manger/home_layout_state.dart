@@ -7,7 +7,7 @@ abstract class HomeLayoutState {
 
 final class HomePageState extends HomeLayoutState {
   @override
-  Widget get page => const HomePage();
+  Widget get page => const DoctorHomePage();
 }
 
 final class ProfilePageState extends HomeLayoutState {

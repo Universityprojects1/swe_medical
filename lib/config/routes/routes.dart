@@ -12,7 +12,7 @@ import 'package:swe_medical/features/splash_feature/spalsh_page.dart';
 import '../../features/auth_feature/presentation/views/sign_in_page.dart';
 
 class AppRoute {
-  static const splash = '/';
+  static const splash = '/a';
   static const homeLayout = '/homeLayout';
   static const signIn = '/SignIn';
   static const signUp = '/SignUp';
