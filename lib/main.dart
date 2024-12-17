@@ -14,19 +14,20 @@ import 'firebase_options.dart';
 
 
 void main() async {
-  
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  setup();
+  Bloc.observer = MyBlocObserver();
+
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
       builder: (context) => const MyApp(), // Wrap your app
     ),
   );
-  setup();
-  Bloc.observer = MyBlocObserver();
-   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+
 
 }
 
