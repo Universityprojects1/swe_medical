@@ -22,7 +22,8 @@ class AppRoute {
   static const signIn = '/SignIn';
   static const signUp = '/SignUp';
   static const forgetPassword = '/ForgetPassword';
-  static const payment = '/payment';
+  // static const payment = '/payment';
+  static const payment = '/';
   static const congratulationPayment = '/congratulation_payment';
   static const record = '/record';
 
