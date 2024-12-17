@@ -1,13 +1,16 @@
+import 'package:hive_flutter/adapters.dart';
+part 'PatientModel.g.dart';
+
+@HiveType(typeId: 1)
 class PatientModel {
-  PatientModel({
-    this.patientId,
-    this.name,
-    this.address,
-    this.email,
-    this.phone,
-    this.healthRecord,
-    this.isHeAssignHealthRecord
-  });
+  PatientModel(
+      {this.patientId,
+      this.name,
+      this.address,
+      this.email,
+      this.phone,
+      this.healthRecord,
+      this.isHeAssignHealthRecord});
 
   PatientModel.fromJson(dynamic json) {
     patientId = json['Patient_id'];
@@ -18,15 +21,22 @@ class PatientModel {
     healthRecord = json['healthRecord'] != null
         ? HealthRecord.fromJson(json['healthRecord'])
         : null;
-    isHeAssignHealthRecord=json['isHeAssignHealthRecord'];
+    isHeAssignHealthRecord = json['isHeAssignHealthRecord'];
   }
 
+  @HiveField(0)
   String? patientId;
+  @HiveField(1)
   String? name;
+  @HiveField(2)
   String? address;
+  @HiveField(3)
   String? email;
+  @HiveField(4)
   String? phone;
+  @HiveField(5)
   HealthRecord? healthRecord;
+  @HiveField(6)
   bool? isHeAssignHealthRecord = false;
 
   PatientModel copyWith({
@@ -56,11 +66,12 @@ class PatientModel {
     if (healthRecord != null) {
       map['healthRecord'] = healthRecord?.toJson();
     }
-    map['isHeAssignHealthRecord']=isHeAssignHealthRecord;
+    map['isHeAssignHealthRecord'] = isHeAssignHealthRecord;
     return map;
   }
 }
 
+@HiveType(typeId: 2)
 class HealthRecord {
   HealthRecord({
     this.age,
@@ -76,9 +87,13 @@ class HealthRecord {
     bloodType = json['bloodType'];
   }
 
+  @HiveField(0)
   String? age;
+  @HiveField(1)
   num? weight;
+  @HiveField(2)
   num? height;
+  @HiveField(3)
   String? bloodType;
 
   HealthRecord copyWith({
