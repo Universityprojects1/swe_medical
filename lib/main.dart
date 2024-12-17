@@ -15,21 +15,24 @@ import 'firebase_options.dart';
 
 
 void main() async {
-  
+
+
+  HiveManager().inti();
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
       builder: (context) => const MyApp(), // Wrap your app
     ),
   );
-
-  Bloc.observer = MyBlocObserver();
-   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setup();
-  getIt<HiveManager>().inti();
+
+  Bloc.observer = MyBlocObserver();
+   WidgetsFlutterBinding.ensureInitialized();
+
+
 
 }
 

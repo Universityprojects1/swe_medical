@@ -72,10 +72,10 @@ class AuthRepoImpl implements AuthRepo {
       } else if (e.code == 'wrong-password') {
         return left(ServerFailure("Wrong password provided for that user."));
       } else {
-        return left(ServerFailure("Something went wrong"));
+        return left(ServerFailure(e.toString()));
       }
     } catch (e) {
-      return left(ServerFailure("Something went wrong"));
+      return left(ServerFailure(e.toString()));
     }
   }
 
@@ -87,10 +87,10 @@ class AuthRepoImpl implements AuthRepo {
     hiveManager.cacheData<PatientModel>(
         boxKey: HiveKeys.patientBox,
         dataItem: PatientModel(
-            name: patientModel!.name,
-            email: patientModel.email,
-            phone: patientModel.mobile,
-            isHeAssignHealthRecord: patientModel.isAddHealthRecord,
+            name: patientModel?.name??"",
+            email: patientModel?.email??"",
+            phone: patientModel?.mobile??"",
+            isHeAssignHealthRecord: patientModel?.isAddHealthRecord??true,
             patientId: credential.user!.uid));
   }
 }
