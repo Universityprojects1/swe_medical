@@ -13,6 +13,7 @@ import 'package:swe_medical/features/auth_feature/presentation/views/widgets/sig
 
 import '../../../../config/routes/routes.dart';
 import '../../../../core/services/validation_service.dart';
+import '../../data/repo/auth_repo.dart';
 import '../../data/repo/auth_repo_impl.dart';
 
 class SignInPage extends StatefulWidget {
@@ -39,7 +40,7 @@ class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AuthCubit(AuthRepoImpl(getIt<FirebaseAuth>())),
+      create: (context) => AuthCubit(getIt<AuthRepo>()),
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: buildAppBar("Log In"),
