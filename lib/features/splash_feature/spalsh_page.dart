@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swe_medical/core/cache/storage_token.dart';
+import 'package:swe_medical/core/di/service_locator.dart';
 import '../../../generated/assets.dart';
 import '../../config/routes/routes.dart';
 
@@ -18,8 +20,15 @@ class _SplashBodyState extends State<SplashBody> {
       const Duration(
         seconds: 3,
       ),
-      () {
-        GoRouter.of(context).pushReplacement(AppRoute.signIn);
+      () async{
+        String? token= await getIt<StorageToken>().getToken();
+
+        if(token != null){
+          GoRouter.of(context).pushReplacement(AppRoute.homeLayout);
+        }
+        else {
+          GoRouter.of(context).pushReplacement(AppRoute.signIn);
+        }
       },
     );
     super.initState();

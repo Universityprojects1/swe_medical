@@ -38,7 +38,11 @@ class AppRoute {
       ),
       GoRoute(
         path: signIn,
-        builder: (context, state) => const SignInPage(),
+        builder: (context, state) =>
+            BlocProvider(
+              create: (context) => AuthCubit(getIt<AuthRepo>()),
+              child: const SignInPage(),
+            ),
       ),
       GoRoute(
         path: splash,

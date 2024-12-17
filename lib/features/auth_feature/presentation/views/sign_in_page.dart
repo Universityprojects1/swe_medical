@@ -39,15 +39,15 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AuthCubit(getIt<AuthRepo>()),
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: buildAppBar("Log In"),
-        body: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: MediaQuery.sizeOf(context).width * .08,
-              vertical: MediaQuery.sizeOf(context).height * .03),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: buildAppBar("Log In"),
+      body: Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: MediaQuery.sizeOf(context).width * .08,
+            vertical: MediaQuery.sizeOf(context).height * .03),
+        child: Form(
+          key: _formKey,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -93,7 +93,13 @@ class _SignInPageState extends State<SignInPage> {
                 child: Align(
                   alignment: Alignment.center,
                   child: CustomButton(
-                    onTap: () {},
+                    onTap: () {
+                      if(_formKey.currentState!.validate()){
+                        context.read<AuthCubit>().signIn(
+                            emailController.text, passwordController.text);
+                      }
+
+                    },
                     isLogin: true,
                     title: "Log In",
                   ),

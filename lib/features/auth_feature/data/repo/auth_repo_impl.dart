@@ -18,6 +18,31 @@ class AuthRepoImpl implements AuthRepo{
      await storageToken.setToken(credential.user!.uid);
       return right(credential.user!.uid);
     } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        return left(ServerFailure("The password provided is too weak."));
+
+      } else if (e.code == 'email-already-in-use') {
+        return left(ServerFailure("The account already exists for that email."));
+
+      }
+      else{
+        return left(ServerFailure("Something went wrong"));
+      }
+    }
+    catch (e) {
+      return left(ServerFailure("Something went wrong"));
+    }
+  }
+  @override
+  Future<Either<Failure, String>> signIn(String email, String password) async{
+    try {
+      final credential = await firebaseAuth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+      );
+     await storageToken.setToken(credential.user!.uid);
+      return right(credential.user!.uid);
+    } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
        return left(ServerFailure("No user found for that email."));
       } else if (e.code == 'wrong-password') {

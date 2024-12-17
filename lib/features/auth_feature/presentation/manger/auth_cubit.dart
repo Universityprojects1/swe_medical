@@ -10,7 +10,22 @@ class AuthCubit extends Cubit<AuthState> {
   AuthRepo authRepo;
   static AuthCubit get(context)=>BlocProvider.of(context);
   signUp(String email, String password) async {
+    emit(AuthLoadingState());
     var result = await authRepo.signUp(email, password);
+    result.fold(
+      (l) {
+        emit(AuthErrorState(l.message));
+      },
+      (r) {
+        emit(AuthSuccessState(r));
+      },
+    );
+  }
+
+
+  signIn(String email, String password) async {
+    emit(AuthLoadingState());
+    var result = await authRepo.signIn(email, password);
     result.fold(
       (l) {
         emit(AuthErrorState(l.message));
