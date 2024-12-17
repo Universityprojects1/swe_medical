@@ -31,12 +31,12 @@ class ForgetPage extends StatelessWidget {
                 isPassword: true,
               ),
               Gap(30),
-              Align(
-                alignment: Alignment.center,
-                child: CustomButton(
-                  title: "Create New Password",
-                ),
-              ),
+              // Align(
+              //   alignment: Alignment.center,
+              //   child: CustomButton(
+              //     title: "Create New Password",
+              //   ),
+              // ),
             ],
           ),
         ),

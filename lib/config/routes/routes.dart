@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swe_medical/features/auth_feature/data/repo/auth_repo.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/forget_page.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/sign_up_page.dart';
 import 'package:swe_medical/features/home_layout_feature/presentation/manger/home_layout_cubit.dart';
@@ -8,6 +10,9 @@ import 'package:swe_medical/features/payment_feature/pages/congratulation_paymen
 import 'package:swe_medical/features/payment_feature/pages/payment_page.dart';
 import 'package:swe_medical/features/splash_feature/spalsh_page.dart';
 
+import '../../core/di/service_locator.dart';
+import '../../features/auth_feature/data/repo/auth_repo_impl.dart';
+import '../../features/auth_feature/presentation/manger/auth_cubit.dart';
 import '../../features/auth_feature/presentation/views/sign_in_page.dart';
 
 class AppRoute {
@@ -25,10 +30,11 @@ class AppRoute {
     routes: [
       GoRoute(
         path: homeLayout,
-        builder: (context, state) => BlocProvider(
-          create: (context) => HomeLayoutCubit(),
-          child: const HomeLayoutPage(),
-        ),
+        builder: (context, state) =>
+            BlocProvider(
+              create: (context) => HomeLayoutCubit(),
+              child: const HomeLayoutPage(),
+            ),
       ),
       GoRoute(
         path: signIn,
@@ -40,7 +46,11 @@ class AppRoute {
       ),
       GoRoute(
         path: signUp,
-        builder: (context, state) => const SignUpPage(),
+        builder: (context, state) =>
+            BlocProvider(
+              create: (context) => AuthCubit(getIt<AuthRepo>()),
+              child: const SignUpPage(),
+            ),
       ),
       GoRoute(
         path: forgetPassword,
