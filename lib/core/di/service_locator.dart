@@ -15,8 +15,7 @@ getIt.registerSingleton<FirebaseAuth>(FirebaseAuth.instance);
 getIt.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
 getIt.registerSingleton<StorageToken>(StorageToken());
 getIt.registerSingleton<HiveManager>(HiveManager());
-
-getIt.registerSingleton<AuthRepo>(AuthRepoImpl(getIt<FirebaseAuth>(),getIt<StorageToken>(),getIt<FirebaseFirestore>()));
+getIt.registerSingleton<AuthRepo>(AuthRepoImpl(getIt<FirebaseAuth>(),getIt<StorageToken>(),getIt<FirebaseFirestore>(),getIt<HiveManager>()));
 
 
 

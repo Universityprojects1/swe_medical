@@ -1,17 +1,23 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:swe_medical/core/api/fire_base_helper.dart';
+import 'package:swe_medical/core/cache/hive/hive_keyes.dart';
+import 'package:swe_medical/core/cache/hive/hive_manager.dart';
 import 'package:swe_medical/core/cache/storage_token.dart';
 import 'package:swe_medical/core/erorr/failure.dart';
+import 'package:swe_medical/core/utils/Model/PatientModel.dart';
 import 'package:swe_medical/features/auth_feature/data/model/request/UserRequest.dart';
 import 'package:swe_medical/features/auth_feature/data/repo/auth_repo.dart';
 
 class AuthRepoImpl implements AuthRepo {
   FirebaseAuth firebaseAuth;
   StorageToken storageToken;
+  HiveManager hiveManager;
   FirebaseFirestore fireBaseFireStore;
 
-  AuthRepoImpl(this.firebaseAuth, this.storageToken, this.fireBaseFireStore);
+  AuthRepoImpl(this.firebaseAuth, this.storageToken, this.fireBaseFireStore,
+      this.hiveManager);
 
   @override
   Future<Either<Failure, String>> signUp(UserRequest userRequest) async {
@@ -44,7 +50,8 @@ class AuthRepoImpl implements AuthRepo {
         .withConverter<UserRequest>(
             fromFirestore: (snapshot, options) =>
                 UserRequest.fromJson(snapshot),
-            toFirestore: (userRequest, options) => userRequest.toJson()).doc(credential.user?.uid);
+            toFirestore: (userRequest, options) => userRequest.toJson())
+        .doc(credential.user?.uid);
     docRef.set(userRequest);
   }
 
@@ -56,6 +63,8 @@ class AuthRepoImpl implements AuthRepo {
         password: password,
       );
       await storageToken.setToken(credential.user!.uid);
+      await getPatientAllData(credential);
+      print(hiveManager.retrievePerson<PatientModel>(HiveKeys.patientBox, 0).name);
       return right(credential.user!.uid);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -68,5 +77,20 @@ class AuthRepoImpl implements AuthRepo {
     } catch (e) {
       return left(ServerFailure("Something went wrong"));
     }
+  }
+
+  Future<void> getPatientAllData(UserCredential credential) async {
+     final docSnap = await FireBaseHelper.docRefForPatientFireStore(
+            credential, UserRequest())
+        .get();
+    final patientModel = docSnap.data();
+    hiveManager.cacheData<PatientModel>(
+        boxKey: HiveKeys.patientBox,
+        dataItem: PatientModel(
+            name: patientModel!.name,
+            email: patientModel.email,
+            phone: patientModel.mobile,
+            isHeAssignHealthRecord: patientModel.isAddHealthRecord,
+            patientId: credential.user!.uid));
   }
 }

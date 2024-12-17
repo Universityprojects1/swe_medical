@@ -7,6 +7,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:swe_medical/config/routes/routes.dart';
+import 'package:swe_medical/core/cache/hive/hive_manager.dart';
 
 import 'core/di/service_locator.dart';
 import 'core/utils/bloc_observer.dart';
@@ -28,6 +29,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   setup();
+  getIt<HiveManager>().inti();
 
 }
 
