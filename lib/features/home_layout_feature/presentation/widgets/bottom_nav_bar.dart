@@ -50,7 +50,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           selectedColor: AppColor.primaryColor,
         ),
       ],
-      fabLocation: StylishBarFabLocation.end,
+
       hasNotch: true,
       currentIndex: selectedIndex,
       onTap: (index) {

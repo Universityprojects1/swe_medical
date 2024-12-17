@@ -21,12 +21,13 @@ void main() async {
       builder: (context) => const MyApp(), // Wrap your app
     ),
   );
-  setup();
+
   Bloc.observer = MyBlocObserver();
    WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setup();
 
 }
 
