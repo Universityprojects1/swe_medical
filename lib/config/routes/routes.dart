@@ -8,6 +8,7 @@ import 'package:swe_medical/features/home_layout_feature/presentation/manger/hom
 import 'package:swe_medical/features/home_layout_feature/presentation/pages/home_layout_page.dart';
 import 'package:swe_medical/features/payment_feature/pages/congratulation_payment_page.dart';
 import 'package:swe_medical/features/payment_feature/pages/payment_page.dart';
+import 'package:swe_medical/features/record_feature/pages/record_page.dart';
 import 'package:swe_medical/features/splash_feature/spalsh_page.dart';
 
 import '../../core/di/service_locator.dart';
@@ -22,9 +23,8 @@ class AppRoute {
   static const signUp = '/SignUp';
   static const forgetPassword = '/ForgetPassword';
   static const payment = '/payment';
-
-
   static const congratulationPayment = '/congratulation_payment';
+  static const record = '/record';
 
   static final router = GoRouter(
     routes: [
@@ -67,6 +67,10 @@ class AppRoute {
       GoRoute(
         path: congratulationPayment,
         builder: (context, state) => const CongratulationPaymentPage(),
+      ),
+      GoRoute(
+        path: record,
+        builder: (context, state) => const RecordPage(),
       ),
     ],
   );

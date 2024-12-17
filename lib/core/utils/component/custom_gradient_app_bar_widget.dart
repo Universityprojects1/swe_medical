@@ -4,7 +4,8 @@ import '../../../../core/utils/app_color.dart';
 import '../../../../core/utils/app_style.dart';
 
 class CustomGradientAppBarWidget extends StatelessWidget implements PreferredSizeWidget {
-  const CustomGradientAppBarWidget({super.key});
+  final String title;
+  const CustomGradientAppBarWidget({super.key,required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class CustomGradientAppBarWidget extends StatelessWidget implements PreferredSiz
             )),
 
         title: Text(
-          "Payment",
+          title,
           style: TextStyle(
               fontSize: AppStyle.responsiveFont(fontSize: 24, context: context),
               color: AppColor.whiteColor,
