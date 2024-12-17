@@ -21,9 +21,8 @@ class HomeLayoutPage extends StatelessWidget {
         backgroundColor: AppColor.primaryColor,
         leading: InkWell(
           onTap: () {
-             getIt<StorageToken>().deleteToken();
-             context.go(AppRoute.signIn);
-
+            getIt<StorageToken>().deleteToken();
+            context.go(AppRoute.signIn);
           },
           child: Image.asset(
             Assets.imagesLogoutIcon,
