@@ -42,80 +42,82 @@ class _SignInPageState extends State<SignInPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: buildAppBar("Log In"),
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.sizeOf(context).width * .08,
-            vertical: MediaQuery.sizeOf(context).height * .03),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Welcome",
-                style: TextStyle(
-                    color: AppColor.primaryColor,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 24),
-              ),
-              const Gap(30),
-              CustomTextField(
-                text: "example@example.com",
-                title: "Email",
-                controller: emailController,
-                validator: (p0) => ValidationService.validateEmail(p0),
-              ),
-              const Gap(15),
-              CustomTextField(
-                controller: passwordController,
-                text: "***************",
-                title: "Password",
-                isPassword: true,
-              ),
-              const Gap(5),
-              InkWell(
-                onTap: () {
-                  GoRouter.of(context).pushReplacement(AppRoute.forgetPassword);
-                },
-                child: const Align(
-                    alignment: Alignment.centerRight,
-                    child: Text(
-                      "Forget Password",
-                      style:
-                          TextStyle(fontSize: 12, color: AppColor.primaryColor),
-                    )),
-              ),
-              const Gap(30),
-              InkWell(
-                onTap: () {
-                  GoRouter.of(context).pushReplacement(AppRoute.homeLayout);
-                },
-                child: Align(
-                  alignment: Alignment.center,
-                  child: CustomButton(
-                    onTap: () {
-                      if(_formKey.currentState!.validate()){
-                        context.read<AuthCubit>().signIn(
-                            emailController.text, passwordController.text);
-                      }
-
-                    },
-                    isLogin: true,
-                    title: "Log In",
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: MediaQuery.sizeOf(context).width * .08,
+              vertical: MediaQuery.sizeOf(context).height * .03),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Welcome",
+                  style: TextStyle(
+                      color: AppColor.primaryColor,
+                      fontWeight: FontWeight.w700,
+                      fontSize: 24),
+                ),
+                const Gap(30),
+                CustomTextField(
+                  text: "example@example.com",
+                  title: "Email",
+                  controller: emailController,
+                  validator: (p0) => ValidationService.validateEmail(p0),
+                ),
+                const Gap(15),
+                CustomTextField(
+                  controller: passwordController,
+                  text: "***************",
+                  title: "Password",
+                  isPassword: true,
+                ),
+                const Gap(5),
+                InkWell(
+                  onTap: () {
+                    GoRouter.of(context).pushReplacement(AppRoute.forgetPassword);
+                  },
+                  child: const Align(
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        "Forget Password",
+                        style:
+                            TextStyle(fontSize: 12, color: AppColor.primaryColor),
+                      )),
+                ),
+                const Gap(30),
+                InkWell(
+                  onTap: () {
+                    GoRouter.of(context).pushReplacement(AppRoute.homeLayout);
+                  },
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: CustomButton(
+                      onTap: () {
+                        if(_formKey.currentState!.validate()){
+                          context.read<AuthCubit>().signIn(
+                              emailController.text, passwordController.text);
+                        }
+        
+                      },
+                      isLogin: true,
+                      title: "Log In",
+                    ),
                   ),
                 ),
-              ),
-              const Gap(30),
-              InkWell(
-                onTap: () {
-                  GoRouter.of(context).pushReplacement(AppRoute.signUp);
-                },
-                child: const SignInOrSignUp(
-                  text_1: "Don’t have an account? ",
-                  text_2: "Sign Up",
-                ),
-              )
-            ],
+                const Gap(30),
+                InkWell(
+                  onTap: () {
+                    GoRouter.of(context).pushReplacement(AppRoute.signUp);
+                  },
+                  child: const SignInOrSignUp(
+                    text_1: "Don’t have an account? ",
+                    text_2: "Sign Up",
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
