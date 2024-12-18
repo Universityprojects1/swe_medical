@@ -17,6 +17,7 @@ import '../../../../core/di/service_locator.dart';
 import '../../../chat_feature/chat_screen.dart';
 import '../../../home_feature/presentation/patient/pages/home_page.dart';
 import '../../../profile_admin/presentation/views/profile_admin_page.dart';
+import '../../../record_feature/pages/record_page.dart';
 
 part 'home_layout_state.dart';
 

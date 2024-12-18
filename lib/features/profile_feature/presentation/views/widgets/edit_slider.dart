@@ -21,12 +21,12 @@ class EditSlider extends StatelessWidget {
               fontSize: AppStyle.responsiveFont(fontSize: 20, context: context),
               fontWeight: FontWeight.w500),
         ),
-        CustomContainer(
-          widget: SliderWidget(
-            currentValue: 50,
-            maxInterval: maxInterval,
-          ),
-        )
+        // CustomContainer(
+        //   widget: SliderWidget(
+        //     currentValue: 50,
+        //     maxInterval: maxInterval,
+        //   ),
+        // )
       ],
     );
   }

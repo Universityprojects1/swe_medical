@@ -8,6 +8,7 @@ import 'package:swe_medical/features/home_layout_feature/presentation/manger/hom
 import 'package:swe_medical/features/home_layout_feature/presentation/pages/home_layout_page.dart';
 import 'package:swe_medical/features/payment_feature/pages/congratulation_payment_page.dart';
 import 'package:swe_medical/features/payment_feature/pages/payment_page.dart';
+import 'package:swe_medical/features/record_feature/manager/record_cubit.dart';
 import 'package:swe_medical/features/record_feature/pages/record_page.dart';
 import 'package:swe_medical/features/splash_feature/spalsh_page.dart';
 
@@ -70,7 +71,11 @@ class AppRoute {
       ),
       GoRoute(
         path: record,
-        builder: (context, state) => const RecordPage(),
+        builder: (context, state) =>
+            BlocProvider(
+              create: (context) => RecordCubit(),
+              child: const RecordPage(),
+            ),
       ),
     ],
   );

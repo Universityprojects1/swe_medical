@@ -8,14 +8,20 @@ abstract class HomeLayoutState {
 final class HomePageState extends HomeLayoutState {
   @override
   Widget get page {
-    var userId = getIt<HiveManager>()
-            .retrievePerson<PatientModel>(HiveKeys.patientBox, 0)
-            .patientId ??
+    var patient = getIt<HiveManager>()
+            .retrievePerson<PatientModel>(HiveKeys.patientBox, 0);
+
         "";
-    if (userId == "iRLlMW6ShsMWwp4kjlzoTQj8v6k1") {
+    if (patient.patientId == "iRLlMW6ShsMWwp4kjlzoTQj8v6k1") {
       return const DoctorHomePage();
     } else {
-      return const HomePage();
+      if(patient.isHeAssignHealthRecord!??false){
+        return const HomePage();
+      }
+      else{
+        return const RecordPage();
+      }
+
     }
   }
 }
