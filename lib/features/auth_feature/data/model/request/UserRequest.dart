@@ -12,6 +12,7 @@ class UserRequest {
     password = json['password'];
     mobile = json['mobile'];
     name = json['name'];
+    isAddHealthRecord = json['isAddHealthRecord'];
   }
 
   String? email;
@@ -26,6 +27,7 @@ class UserRequest {
     map['password'] = password;
     map['mobile'] = mobile;
     map['name'] = name;
+    map['isAddHealthRecord'] = isAddHealthRecord;
     return map;
   }
 }

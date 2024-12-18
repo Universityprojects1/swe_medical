@@ -37,7 +37,19 @@ class CustomButton extends StatelessWidget {
 
             }
             else if(state is AuthSuccessState){
-              context.go(AppRoute.homeLayout);
+              if(isLogin){
+                if(state.patient.isHeAssignHealthRecord!??false){
+                  context.go(AppRoute.homeLayout);
+                }
+                else{
+                  context.go(AppRoute.record);
+                }
+
+              }
+              else{
+                context.go(AppRoute.signIn);
+              }
+
             }
           },
           builder: (context, state) {
