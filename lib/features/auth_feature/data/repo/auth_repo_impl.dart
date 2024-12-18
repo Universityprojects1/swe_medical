@@ -64,7 +64,7 @@ class AuthRepoImpl implements AuthRepo {
       );
       await storageToken.setToken(credential.user!.uid);
       await getPatientAllData(credential);
-      print(hiveManager.retrievePerson<PatientModel>(HiveKeys.patientBox, 0).name);
+
       return right(credential.user!.uid);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
