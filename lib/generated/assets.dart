@@ -10,5 +10,8 @@ class Assets {
   static const String imagesSmileMan = 'assets/images/smileman2.jpg';
   static const String imagesClockIcon = 'assets/images/clock_icon.svg';
   static const String imagesLogoutIcon = 'assets/images/log_out.png';
+  static const String imagesPhoto = 'assets/images/photo.png';
+  static const String experienceIcon = 'assets/images/experience_icon.svg';
+  static const String alarmIcon = 'assets/images/alarm.svg';
 
 }
