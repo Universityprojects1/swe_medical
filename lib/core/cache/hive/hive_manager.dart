@@ -28,7 +28,7 @@ class HiveManager {
     if (dataList != null) {
       box.addAll(dataList);
     } else if (dataItem != null) {
-      box.putAt(0, dataItem);
+      box.put(0, dataItem);
     }
   }
 
