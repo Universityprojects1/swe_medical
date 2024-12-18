@@ -4,27 +4,27 @@ import 'package:swe_medical/core/utils/app_color.dart';
 
 import '../../../../../core/utils/app_style.dart';
 
-class CustomTextField extends StatefulWidget {
+class CustomEditTextField extends StatefulWidget {
   final String text;
   final bool isPassword;
   final String? Function(String?)? validator;
   final TextEditingController? controller;
   final String title;
 
-  const CustomTextField({
+  const CustomEditTextField({
     super.key,
     required this.text,
     this.isPassword = false,
     this.validator,
-     this.controller,
+    this.controller,
     required this.title,
   });
 
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
+  State<CustomEditTextField> createState() => _CustomTextFieldState();
 }
 
-class _CustomTextFieldState extends State<CustomTextField> {
+class _CustomTextFieldState extends State<CustomEditTextField> {
   bool _obscureText = true;
 
   @override
@@ -36,7 +36,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           widget.title,
           style:  TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: AppStyle.responsiveFont(fontSize:20, context: context),
+            fontSize:AppStyle.responsiveFont(fontSize: 20, context: context),
           ),
         ),
         const SizedBox(
@@ -68,14 +68,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 borderSide: BorderSide(color: Colors.white)),
             suffixIcon: widget.isPassword
                 ? IconButton(
-                    onPressed: () {
-                      _obscureText = !_obscureText;
-                      setState(() {});
-                    },
-                    icon: Icon(_obscureText
-                        ? CupertinoIcons.eye_slash
-                        : CupertinoIcons.eye),
-                  )
+              onPressed: () {
+                _obscureText = !_obscureText;
+                setState(() {});
+              },
+              icon: Icon(_obscureText
+                  ? CupertinoIcons.eye_slash
+                  : CupertinoIcons.eye),
+            )
                 : null,
           ),
         ),

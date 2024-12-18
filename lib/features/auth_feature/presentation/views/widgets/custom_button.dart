@@ -6,6 +6,7 @@ import 'package:swe_medical/core/services/snack_bar_services.dart';
 import 'package:swe_medical/features/auth_feature/presentation/manger/auth_cubit.dart';
 
 import '../../../../../../core/utils/app_color.dart';
+import '../../../../../core/utils/app_style.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({
@@ -48,8 +49,8 @@ class CustomButton extends StatelessWidget {
             return Center(
               child: Text(
                 title,
-                style: const TextStyle(
-                    fontSize: 24,
+                style:  TextStyle(
+                    fontSize: AppStyle.responsiveFont(fontSize: 24, context: context),
                     color: Colors.white,
                     fontWeight: FontWeight.w600),
               ),
