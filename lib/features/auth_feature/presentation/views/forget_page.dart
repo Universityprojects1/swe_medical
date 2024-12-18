@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/app_bar.dart';
-import 'package:swe_medical/features/auth_feature/presentation/views/widgets/custom_button.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/custom_text_field.dart';
 
 class ForgetPage extends StatelessWidget {

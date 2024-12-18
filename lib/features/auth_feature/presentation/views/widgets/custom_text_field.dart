@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
 
+import '../../../../../core/utils/app_style.dart';
+
 class CustomTextField extends StatefulWidget {
   final String text;
   final bool isPassword;
@@ -32,9 +34,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
       children: [
         Text(
           widget.title,
-          style: const TextStyle(
+          style:  TextStyle(
             fontWeight: FontWeight.w600,
-            fontSize: 20,
+            fontSize: AppStyle.responsiveFont(fontSize:20, context: context),
           ),
         ),
         const SizedBox(
@@ -48,9 +50,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
             filled: true,
             fillColor: const Color(0xffE9F6FE),
             hintText: widget.text,
-            hintStyle:  const TextStyle(
+            hintStyle:   TextStyle(
               color: AppColor.primaryColor,
-              fontSize: 20,
+              fontSize: AppStyle.responsiveFont(fontSize: 18, context: context),
             ),
             border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(Radius.circular(15)),

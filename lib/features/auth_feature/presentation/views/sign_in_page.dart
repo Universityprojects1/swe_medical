@@ -1,20 +1,17 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:swe_medical/core/di/service_locator.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
 import 'package:swe_medical/features/auth_feature/presentation/manger/auth_cubit.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/app_bar.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/custom_button.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/custom_text_field.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/sign_in_or_sign_up.dart';
-
 import '../../../../config/routes/routes.dart';
 import '../../../../core/services/validation_service.dart';
-import '../../data/repo/auth_repo.dart';
-import '../../data/repo/auth_repo_impl.dart';
+import '../../../../core/utils/app_style.dart';
+
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -52,12 +49,12 @@ class _SignInPageState extends State<SignInPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                 Text(
                   "Welcome",
                   style: TextStyle(
                       color: AppColor.primaryColor,
                       fontWeight: FontWeight.w700,
-                      fontSize: 24),
+                      fontSize: AppStyle.responsiveFont(fontSize: 24, context: context)),
                 ),
                 const Gap(30),
                 CustomTextField(
@@ -78,12 +75,12 @@ class _SignInPageState extends State<SignInPage> {
                   onTap: () {
                     GoRouter.of(context).pushReplacement(AppRoute.forgetPassword);
                   },
-                  child: const Align(
+                  child:  Align(
                       alignment: Alignment.centerRight,
                       child: Text(
                         "Forget Password",
                         style:
-                            TextStyle(fontSize: 12, color: AppColor.primaryColor),
+                            TextStyle(fontSize: AppStyle.responsiveFont(fontSize: 12, context: context), color: AppColor.primaryColor),
                       )),
                 ),
                 const Gap(30),
