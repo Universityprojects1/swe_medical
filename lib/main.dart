@@ -8,6 +8,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:swe_medical/config/routes/routes.dart';
+import 'package:swe_medical/core/cache/hive/hive_manager.dart';
 
 import 'core/di/service_locator.dart';
 import 'core/services/stripe_payment_services/api_keys_constants/apis_constants.dart';
@@ -17,6 +18,11 @@ import 'firebase_options.dart';
 
 
 void main() async {
+
+
+
+  HiveManager().inti();
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -25,6 +31,7 @@ void main() async {
   Bloc.observer = MyBlocObserver();
   StripeDioHelper.init();
   Stripe.publishableKey=ApiKeysConst.stripePublishKey;
+
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,

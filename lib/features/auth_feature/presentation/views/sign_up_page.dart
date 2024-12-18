@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swe_medical/core/di/service_locator.dart';
+import 'package:swe_medical/features/auth_feature/data/model/request/UserRequest.dart';
 import 'package:swe_medical/features/auth_feature/data/repo/auth_repo_impl.dart';
 import 'package:swe_medical/features/auth_feature/presentation/manger/auth_cubit.dart';
 import 'package:swe_medical/features/auth_feature/presentation/views/widgets/app_bar.dart';
@@ -24,6 +25,8 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController numberController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -40,9 +43,10 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const CustomTextField(
+                CustomTextField(
                   text: "Your name",
                   title: "Full Name",
+                  controller: nameController,
                 ),
                 const Gap(15),
                 CustomTextField(
@@ -59,7 +63,8 @@ class _SignUpPageState extends State<SignUpPage> {
                   controller: passwordController,
                 ),
                 const Gap(15),
-                const CustomTextField(
+                CustomTextField(
+                  controller: numberController,
                   text: "Your Number",
                   title: "Mobile Number",
                 ),
@@ -68,8 +73,14 @@ class _SignUpPageState extends State<SignUpPage> {
                   alignment: Alignment.center,
                   child: CustomButton(
                     onTap: () {
-                      AuthCubit.get(context).signUp(
-                      emailController.text,passwordController.text );
+                      if(_formKey.currentState!.validate()){
+                        UserRequest userRequest = UserRequest(
+                            email: emailController.text,
+                            password: passwordController.text,
+                            name: nameController.text,
+                            mobile: numberController.text);
+                        AuthCubit.get(context).signUp(userRequest);
+                      }
                     },
                     isLogin: false,
                     title: "Sign Up",

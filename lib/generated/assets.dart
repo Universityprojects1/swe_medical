@@ -9,5 +9,6 @@ class Assets {
   static const String imagesUserProfile = 'assets/images/User_Profile.svg';
   static const String imagesSmileMan = 'assets/images/smileman2.jpg';
   static const String imagesClockIcon = 'assets/images/clock_icon.svg';
+  static const String imagesLogoutIcon = 'assets/images/log_out.png';
 
 }

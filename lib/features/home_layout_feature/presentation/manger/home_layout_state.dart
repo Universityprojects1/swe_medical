@@ -7,7 +7,17 @@ abstract class HomeLayoutState {
 
 final class HomePageState extends HomeLayoutState {
   @override
-  Widget get page => const DoctorHomePage();
+  Widget get page {
+    var userId = getIt<HiveManager>()
+            .retrievePerson<PatientModel>(HiveKeys.patientBox, 0)
+            .patientId ??
+        "";
+    if (userId == "iRLlMW6ShsMWwp4kjlzoTQj8v6k1") {
+      return const DoctorHomePage();
+    } else {
+       return const HomePage();
+    }
+  }
 }
 
 final class ProfilePageState extends HomeLayoutState {
