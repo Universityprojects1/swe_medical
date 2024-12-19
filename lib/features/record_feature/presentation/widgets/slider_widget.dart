@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
-import '../../../core/utils/app_color.dart';
+import '../../../../core/utils/app_color.dart';
+
 
 class SliderWidget extends StatelessWidget {
   final int maxInterval;

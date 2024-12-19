@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swe_medical/config/routes/routes.dart';
-import '../../../core/utils/app_color.dart';
-import '../../../core/utils/app_style.dart';
+import '../../../../core/utils/app_color.dart';
+import '../../../../core/utils/app_style.dart';
+
 import '../manager/record_cubit.dart';
 
 class SaveButtonWidget extends StatelessWidget {
@@ -14,7 +15,7 @@ class SaveButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
         onPressed: () {
-          print(context.read<RecordCubit>().age.toString());
+          print(context.read<RecordCubit>().bloodType);
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: AppColor.whiteColor,

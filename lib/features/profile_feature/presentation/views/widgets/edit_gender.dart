@@ -3,7 +3,8 @@ import 'package:swe_medical/features/profile_feature/presentation/views/widgets/
 
 import '../../../../../core/utils/app_style.dart';
 import '../../../../../core/utils/enums/gender_enum.dart';
-import '../../../../record_feature/widgets/gender_container_widget.dart';
+import '../../../../record_feature/presentation/widgets/gender_container_widget.dart';
+
 
 
 class EditGender extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swe_medical/features/profile_feature/presentation/views/widgets/custom_container.dart';
-import 'package:swe_medical/features/record_feature/widgets/slider_widget.dart';
+
 import '../../../../../core/utils/app_style.dart';
 
 

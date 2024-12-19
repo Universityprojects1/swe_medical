@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swe_medical/config/routes/routes.dart';
 import 'package:swe_medical/core/utils/app_string.dart';
-import 'package:swe_medical/features/record_feature/widgets/slider_widget.dart';
-import '../../../core/utils/app_style.dart';
+import 'package:swe_medical/features/record_feature/presentation/widgets/slider_widget.dart';
+
+import '../../../../core/utils/app_style.dart';
+
 import '../manager/record_cubit.dart';
 
 

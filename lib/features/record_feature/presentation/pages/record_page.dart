@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swe_medical/core/utils/component/custom_gradient_app_bar_widget.dart';
-import 'package:swe_medical/features/record_feature/manager/record_cubit.dart';
 
-import '../../../core/utils/app_string.dart';
+
+import '../../../../core/utils/app_string.dart';
+
+import '../manager/record_cubit.dart';
 import '../widgets/blood_type_drop_down_widget.dart';
 import '../widgets/gender_section_widget.dart';
 import '../widgets/save_button_widget.dart';
