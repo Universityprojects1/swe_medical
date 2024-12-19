@@ -8,13 +8,16 @@ import 'package:swe_medical/features/home_layout_feature/presentation/manger/hom
 import 'package:swe_medical/features/home_layout_feature/presentation/pages/home_layout_page.dart';
 import 'package:swe_medical/features/payment_feature/pages/congratulation_payment_page.dart';
 import 'package:swe_medical/features/payment_feature/pages/payment_page.dart';
-import 'package:swe_medical/features/record_feature/pages/record_page.dart';
+import 'package:swe_medical/features/record_feature/data/repo/record_repo.dart';
+
 import 'package:swe_medical/features/splash_feature/spalsh_page.dart';
 
 import '../../core/di/service_locator.dart';
 import '../../features/auth_feature/data/repo/auth_repo_impl.dart';
 import '../../features/auth_feature/presentation/manger/auth_cubit.dart';
 import '../../features/auth_feature/presentation/views/sign_in_page.dart';
+import '../../features/record_feature/presentation/manager/record_cubit.dart';
+import '../../features/record_feature/presentation/pages/record_page.dart';
 
 class AppRoute {
   static const splash = '/';
@@ -70,7 +73,11 @@ class AppRoute {
       ),
       GoRoute(
         path: record,
-        builder: (context, state) => const RecordPage(),
+        builder: (context, state) =>
+            BlocProvider(
+              create: (context) => RecordCubit(getIt<RecordRepo>()),
+              child: const RecordPage(),
+            ),
       ),
     ],
   );

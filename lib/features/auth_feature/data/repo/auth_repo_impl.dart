@@ -56,16 +56,16 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, String>> signIn(String email, String password) async {
+  Future<Either<Failure, PatientModel>> signIn(String email, String password) async {
     try {
       final credential = await firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
       await storageToken.setToken(credential.user!.uid);
-      await getPatientAllData(credential);
+     var data= await getPatientAllDataAndCachingIt(credential.user!.uid);
 
-      return right(credential.user!.uid);
+      return right(data);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         return left(ServerFailure("No user found for that email."));
@@ -79,18 +79,22 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
-  Future<void> getPatientAllData(UserCredential credential) async {
+  Future<PatientModel> getPatientAllDataAndCachingIt(String uID) async {
      final docSnap = await FireBaseHelper.docRefForPatientFireStore(
-            credential, UserRequest())
+            uID, UserRequest())
         .get();
     final patientModel = docSnap.data();
+    var patientData =  PatientModel(
+        name: patientModel?.name??"",
+        email: patientModel?.email??"",
+        phone: patientModel?.mobile??"",
+        isHeAssignHealthRecord: patientModel?.isAddHealthRecord??true,
+        patientId: uID
+    );
     hiveManager.cacheData<PatientModel>(
         boxKey: HiveKeys.patientBox,
-        dataItem: PatientModel(
-            name: patientModel?.name??"",
-            email: patientModel?.email??"",
-            phone: patientModel?.mobile??"",
-            isHeAssignHealthRecord: patientModel?.isAddHealthRecord??true,
-            patientId: credential.user!.uid));
+        dataItem: patientData);
+    return patientData;
+
   }
 }

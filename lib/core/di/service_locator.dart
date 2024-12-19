@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:swe_medical/core/cache/storage_token.dart';
 import 'package:swe_medical/features/auth_feature/presentation/manger/auth_cubit.dart';
+import 'package:swe_medical/features/record_feature/data/repo/record_repo.dart';
+import 'package:swe_medical/features/record_feature/data/repo/record_repo_impl.dart';
 
 import '../../features/auth_feature/data/repo/auth_repo.dart';
 import '../../features/auth_feature/data/repo/auth_repo_impl.dart';
@@ -16,6 +18,7 @@ getIt.registerSingleton<FirebaseFirestore>(FirebaseFirestore.instance);
 getIt.registerSingleton<StorageToken>(StorageToken());
 getIt.registerSingleton<HiveManager>(HiveManager());
 getIt.registerSingleton<AuthRepo>(AuthRepoImpl(getIt<FirebaseAuth>(),getIt<StorageToken>(),getIt<FirebaseFirestore>(),getIt<HiveManager>()));
+getIt.registerSingleton<RecordRepo>(RecordRepoImpl());
 
 
 

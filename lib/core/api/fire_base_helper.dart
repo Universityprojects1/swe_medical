@@ -7,13 +7,13 @@ import '../../features/auth_feature/data/model/request/UserRequest.dart';
 class FireBaseHelper{
   static FirebaseAuth firebaseAuth=getIt<FirebaseAuth>();
   static FirebaseFirestore fireBaseFireStore=getIt<FirebaseFirestore>();
-  static  DocumentReference<UserRequest>  docRefForPatientFireStore(UserCredential credential, UserRequest userRequest) {
+  static  DocumentReference<UserRequest>  docRefForPatientFireStore(String uId, UserRequest userRequest) {
     var docRef = fireBaseFireStore
         .collection("Patients")
         .withConverter<UserRequest>(
         fromFirestore: (snapshot, options) =>
             UserRequest.fromJson(snapshot),
-        toFirestore: (userRequest, options) => userRequest.toJson()).doc(credential.user?.uid);
+        toFirestore: (userRequest, options) => userRequest.toJson()).doc(uId);
     return docRef;
   }
 

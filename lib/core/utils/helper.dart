@@ -2,6 +2,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:intl/intl.dart';
+import 'package:swe_medical/core/cache/hive/hive_keyes.dart';
+import 'package:swe_medical/core/cache/hive/hive_manager.dart';
+import 'package:swe_medical/core/utils/Model/PatientModel.dart';
 
 abstract class Helper {
   static String timeToString(TimeOfDay time) {
@@ -30,5 +33,11 @@ abstract class Helper {
       borderSide: const BorderSide(color: Color(0xffE4DFDF)),
       borderRadius: BorderRadius.circular(12),
     );
+  }
+  static  PatientModel  returnUser(){
+    var patient =HiveManager().retrievePerson<PatientModel>(HiveKeys.patientBox, 0);
+    return patient;
+
+
   }
 }

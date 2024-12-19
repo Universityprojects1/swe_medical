@@ -2,7 +2,7 @@ import 'package:hive_flutter/adapters.dart';
 part 'PatientModel.g.dart';
 
 @HiveType(typeId: 1)
-class PatientModel {
+class PatientModel extends HiveObject {
   PatientModel(
       {this.patientId,
       this.name,
@@ -78,6 +78,8 @@ class HealthRecord {
     this.weight,
     this.height,
     this.bloodType,
+    this.gender
+
   });
 
   HealthRecord.fromJson(dynamic json) {
@@ -85,6 +87,7 @@ class HealthRecord {
     weight = json['weight'];
     height = json['height'];
     bloodType = json['bloodType'];
+    gender=json["gender"];
   }
 
   @HiveField(0)
@@ -95,6 +98,8 @@ class HealthRecord {
   num? height;
   @HiveField(3)
   String? bloodType;
+  @HiveField(4)
+  String? gender;
 
   HealthRecord copyWith({
     String? age,
@@ -115,6 +120,7 @@ class HealthRecord {
     map['weight'] = weight;
     map['height'] = height;
     map['bloodType'] = bloodType;
+    map["gender"]=gender;
     return map;
   }
 }

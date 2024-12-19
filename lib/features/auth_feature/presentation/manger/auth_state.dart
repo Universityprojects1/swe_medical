@@ -10,8 +10,8 @@ final class AuthErrorState extends AuthState {
   final String error;
 }
 final class AuthSuccessState extends AuthState {
-  AuthSuccessState(this.uid);
-  final String uid;
+  AuthSuccessState(this.patient);
+  final PatientModel patient;
 }
 
 

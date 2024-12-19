@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import '../../../core/utils/app_color.dart';
-import '../../../core/utils/app_style.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/utils/app_color.dart';
+import '../../../../core/utils/app_style.dart';
+
+import '../manager/record_cubit.dart';
 
 class BloodTypeDropdownWidget extends StatefulWidget {
   const BloodTypeDropdownWidget({super.key});
@@ -27,19 +30,25 @@ class _BloodTypeDropdownWidgetState extends State<BloodTypeDropdownWidget> {
       child: DropdownButton<String>(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         value: _selectedItem,
-        hint: Text('Select Item',
-            style: TextStyle(
-                fontSize:
-                AppStyle.responsiveFont(fontSize: 15, context: context),
-                color: AppColor.whiteColor,
-                fontWeight: FontWeight.w500)),
-        isExpanded: true,
-        dropdownColor: AppColor.primaryColor,
-        icon: const Icon(Icons.arrow_drop_down, color: AppColor.whiteColor),
-        style: TextStyle(
+        hint: Text(
+          'Select Item',
+          style: TextStyle(
             fontSize: AppStyle.responsiveFont(fontSize: 15, context: context),
             color: AppColor.whiteColor,
-            fontWeight: FontWeight.w500),
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        isExpanded: true,
+        dropdownColor: AppColor.primaryColor,
+        icon: const Icon(
+          Icons.arrow_drop_down,
+          color: AppColor.whiteColor,
+        ),
+        style: TextStyle(
+          fontSize: AppStyle.responsiveFont(fontSize: 15, context: context),
+          color: AppColor.whiteColor,
+          fontWeight: FontWeight.w500,
+        ),
         items: _items.map((String item) {
           return DropdownMenuItem<String>(
             value: item,
@@ -47,6 +56,7 @@ class _BloodTypeDropdownWidgetState extends State<BloodTypeDropdownWidget> {
           );
         }).toList(),
         onChanged: (String? newValue) {
+          context.read<RecordCubit>().bloodType = newValue??"A";
           setState(() {
             _selectedItem = newValue;
           });

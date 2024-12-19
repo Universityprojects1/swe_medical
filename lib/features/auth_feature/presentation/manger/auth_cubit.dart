@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:swe_medical/core/utils/Model/PatientModel.dart';
 import 'package:swe_medical/features/auth_feature/data/model/request/UserRequest.dart';
 import 'package:swe_medical/features/auth_feature/data/repo/auth_repo.dart';
 
@@ -18,7 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
         emit(AuthErrorState(l.message));
       },
       (r) {
-        emit(AuthSuccessState(r));
+        emit(AuthSuccessState(PatientModel()));
       },
     );
   }

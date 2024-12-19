@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../core/utils/app_color.dart';
-import '../../../core/utils/app_style.dart';
-import '../../../core/utils/enums/gender_enum.dart';
+import '../../../../core/utils/app_color.dart';
+import '../../../../core/utils/app_style.dart';
+import '../../../../core/utils/enums/gender_enum.dart';
+
 class GenderContainerWidget extends StatelessWidget {
   final Gender gender;
   final bool isSelected;
@@ -10,7 +11,8 @@ class GenderContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return AnimatedContainer(
+      duration: const Duration(milliseconds:600),
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:swe_medical/features/profile_feature/presentation/views/widgets/custom_container.dart';
-import 'package:swe_medical/features/record_feature/widgets/slider_widget.dart';
+
 import '../../../../../core/utils/app_style.dart';
 
 
@@ -21,12 +21,12 @@ class EditSlider extends StatelessWidget {
               fontSize: AppStyle.responsiveFont(fontSize: 20, context: context),
               fontWeight: FontWeight.w500),
         ),
-        CustomContainer(
-          widget: SliderWidget(
-            currentValue: 50,
-            maxInterval: maxInterval,
-          ),
-        )
+        // CustomContainer(
+        //   widget: SliderWidget(
+        //     currentValue: 50,
+        //     maxInterval: maxInterval,
+        //   ),
+        // )
       ],
     );
   }
