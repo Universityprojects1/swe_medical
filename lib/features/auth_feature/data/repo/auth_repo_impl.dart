@@ -63,7 +63,7 @@ class AuthRepoImpl implements AuthRepo {
         password: password,
       );
       await storageToken.setToken(credential.user!.uid);
-     var data= await getPatientAllDataAndCachingIt(credential);
+     var data= await getPatientAllDataAndCachingIt(credential.user!.uid);
 
       return right(data);
     } on FirebaseAuthException catch (e) {
@@ -79,9 +79,9 @@ class AuthRepoImpl implements AuthRepo {
     }
   }
 
-  Future<PatientModel> getPatientAllDataAndCachingIt(UserCredential credential) async {
+  Future<PatientModel> getPatientAllDataAndCachingIt(String uID) async {
      final docSnap = await FireBaseHelper.docRefForPatientFireStore(
-            credential, UserRequest())
+            uID, UserRequest())
         .get();
     final patientModel = docSnap.data();
     var patientData =  PatientModel(
@@ -89,7 +89,7 @@ class AuthRepoImpl implements AuthRepo {
         email: patientModel?.email??"",
         phone: patientModel?.mobile??"",
         isHeAssignHealthRecord: patientModel?.isAddHealthRecord??true,
-        patientId: credential.user!.uid
+        patientId: uID
     );
     hiveManager.cacheData<PatientModel>(
         boxKey: HiveKeys.patientBox,

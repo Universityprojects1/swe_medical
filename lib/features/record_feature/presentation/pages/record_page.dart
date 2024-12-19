@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:swe_medical/core/utils/component/custom_gradient_app_bar_widget.dart';
+import 'package:swe_medical/features/record_feature/data/repo/record_repo.dart';
 
-
+import '../../../../core/di/service_locator.dart';
 import '../../../../core/utils/app_string.dart';
 
 import '../manager/record_cubit.dart';
@@ -17,7 +18,7 @@ class RecordPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RecordCubit(),
+      create: (context) => RecordCubit(getIt<RecordRepo>()),
       child: const Scaffold(
         appBar: CustomGradientAppBarWidget(title: "Record"),
         body: Padding(

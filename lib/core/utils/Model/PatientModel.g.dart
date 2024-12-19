@@ -73,13 +73,14 @@ class HealthRecordAdapter extends TypeAdapter<HealthRecord> {
       weight: fields[1] as num?,
       height: fields[2] as num?,
       bloodType: fields[3] as String?,
+      gender: fields[4] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, HealthRecord obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.age)
       ..writeByte(1)
@@ -87,7 +88,9 @@ class HealthRecordAdapter extends TypeAdapter<HealthRecord> {
       ..writeByte(2)
       ..write(obj.height)
       ..writeByte(3)
-      ..write(obj.bloodType);
+      ..write(obj.bloodType)
+      ..writeByte(4)
+      ..write(obj.gender);
   }
 
   @override

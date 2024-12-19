@@ -15,7 +15,7 @@ final class HomePageState extends HomeLayoutState {
     if (patient.patientId == "iRLlMW6ShsMWwp4kjlzoTQj8v6k1") {
       return const DoctorHomePage();
     } else {
-      if(patient.isHeAssignHealthRecord!??false){
+      if(patient.isHeAssignHealthRecord!??true){
         return const HomePage();
       }
       else{
