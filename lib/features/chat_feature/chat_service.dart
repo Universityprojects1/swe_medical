@@ -60,7 +60,7 @@ class ChatService {
   }
 
   Stream<QuerySnapshot> getChat(String id) {
-    List<String> ids = ["Iel99WLRjIQ9PIqHTdtM",id ];
+    List<String> ids = ["iRLlMW6ShsMWwp4kjlzoTQj8v6k1",id ];
     ids.sort();
     String chatRoomId = ids.join('_');
     return fireStore
@@ -72,7 +72,7 @@ class ChatService {
   }
   Stream<QuerySnapshot> getChats() {
     return fireStore
-        .collection("users").snapshots();
+        .collection("Patients").snapshots();
   }
 
 }

@@ -25,7 +25,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void sendMessage() async {
     if (messageController.text.isNotEmpty) {
       await _chatService.sendMessage(
-          "Iel99WLRjIQ9PIqHTdtM", messageController.text,_auth.currentUser!.uid);
+          "iRLlMW6ShsMWwp4kjlzoTQj8v6k1", messageController.text,_auth.currentUser!.uid);
       messageController.clear();
       _scrollToBottom();
     }
@@ -33,7 +33,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Future<void> sendImage(File image) async {
     String imageUrl = await _chatService.uploadImage(image);
-    await _chatService.sendMessage("Iel99WLRjIQ9PIqHTdtM", imageUrl,_auth.currentUser!.uid);
+    await _chatService.sendMessage("iRLlMW6ShsMWwp4kjlzoTQj8v6k1", imageUrl,_auth.currentUser!.uid);
     _scrollToBottom();
   }
 
@@ -104,15 +104,15 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget _buildMessageList() {
     String senderId = _auth.currentUser!.uid;
     return StreamBuilder(
-      stream: _chatService.getMessage("Iel99WLRjIQ9PIqHTdtM", senderId),
+      stream: _chatService.getMessage("iRLlMW6ShsMWwp4kjlzoTQj8v6k1", senderId),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Text("Error");
         } else if (snapshot.connectionState == ConnectionState.waiting) {
           return  const Center(
             child: SizedBox(
-              width: 30, // Set the width
-              height: 30, // Set the height
+              width: 30,
+              height: 30,
               child: CircularProgressIndicator(),
             ),
           );

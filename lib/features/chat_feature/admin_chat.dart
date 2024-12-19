@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'chat_bubble.dart';
@@ -22,10 +21,10 @@ class _AdminChatState extends State<AdminChat> {
   final ChatService _chatService = ChatService();
   final ScrollController _scrollController = ScrollController();
 
-
   void sendMessage() async {
     if (messageController.text.isNotEmpty) {
-      await _chatService.sendMessage(widget.id, messageController.text, "Iel99WLRjIQ9PIqHTdtM");
+      await _chatService.sendMessage(
+          widget.id, messageController.text, "iRLlMW6ShsMWwp4kjlzoTQj8v6k1");
       messageController.clear();
       _scrollToBottom();
     }
@@ -33,7 +32,8 @@ class _AdminChatState extends State<AdminChat> {
 
   Future<void> sendImage(File image) async {
     String imageUrl = await _chatService.uploadImage(image);
-    await _chatService.sendMessage(widget.id, imageUrl, "Iel99WLRjIQ9PIqHTdtM");
+    await _chatService.sendMessage(
+        widget.id, imageUrl, "iRLlMW6ShsMWwp4kjlzoTQj8v6k1");
     _scrollToBottom();
   }
 
@@ -103,19 +103,21 @@ class _AdminChatState extends State<AdminChat> {
 
   Widget _buildMessageList() {
     return StreamBuilder(
-      stream: _chatService.getMessage("Iel99WLRjIQ9PIqHTdtM", widget.id),
+      stream:
+          _chatService.getMessage("iRLlMW6ShsMWwp4kjlzoTQj8v6k1", widget.id),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return const Text("Error");
         } else if (snapshot.connectionState == ConnectionState.waiting) {
-          return  Center(child: SizedBox(
-        width: 30.w,  // Set the width
-        height: 30.h,  // Set the height
-        child: const CircularProgressIndicator(
-        color: Colors.cyan,
-        ),
-        ),
-        );
+          return const Center(
+            child: SizedBox(
+              width: 30,
+              height: 30,
+              child: CircularProgressIndicator(
+                color: Colors.cyan,
+              ),
+            ),
+          );
         } else {
           WidgetsBinding.instance.addPostFrameCallback((_) {
             _scrollToBottom();
@@ -134,13 +136,15 @@ class _AdminChatState extends State<AdminChat> {
 
   Widget _buildMessageItem(DocumentSnapshot doc) {
     Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-    bool isCurrentUser = data['senderId'] == "Iel99WLRjIQ9PIqHTdtM";
-    var alignment = isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
+    bool isCurrentUser = data['senderId'] == "iRLlMW6ShsMWwp4kjlzoTQj8v6k1";
+    var alignment =
+        isCurrentUser ? Alignment.centerRight : Alignment.centerLeft;
 
     return Container(
       alignment: alignment,
       child: Column(
-        crossAxisAlignment: isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isCurrentUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           if (data['message'].toString().startsWith('http'))
             Image.network(data['message'], width: 200, height: 200),
@@ -171,7 +175,8 @@ class _AdminChatState extends State<AdminChat> {
           ),
           Container(
             margin: const EdgeInsets.all(5),
-            decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.black),
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle, color: Colors.black),
             child: IconButton(
               onPressed: () {
                 showImageSourceDialog(context);
@@ -184,7 +189,8 @@ class _AdminChatState extends State<AdminChat> {
           ),
           Container(
             margin: const EdgeInsets.all(5),
-            decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.green),
+            decoration: const BoxDecoration(
+                shape: BoxShape.circle, color: Colors.green),
             child: IconButton(
               onPressed: sendMessage,
               icon: const Icon(
