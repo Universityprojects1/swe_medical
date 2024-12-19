@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../core/utils/app_style.dart';
 import 'admin_chat.dart';
 import 'chat_service.dart';
 
@@ -19,8 +19,8 @@ class _AdminChatRoomsScreenState extends State<AdminChatRoomsScreen> {
         title: Text(
           "Chat Rooms",
           style: TextStyle(
-              fontSize: 24.sp,
-              color: Colors.black,
+              fontSize: AppStyle.responsiveFont(fontSize: 24, context: context),
+              color: Colors.white,
               fontWeight: FontWeight.bold),
         ),
         backgroundColor: Colors.cyan,
@@ -35,8 +35,8 @@ class _AdminChatRoomsScreenState extends State<AdminChatRoomsScreen> {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
               child: SizedBox(
-                width: 30,  // Set the width
-                height: 30,  // Set the height
+                width: 30,
+                height: 30,
                 child: CircularProgressIndicator(
                   color: Colors.cyan,
                 ),
@@ -59,7 +59,7 @@ class _AdminChatRoomsScreenState extends State<AdminChatRoomsScreen> {
 
               return Card(
                   margin:
-                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   elevation: 5,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
@@ -67,7 +67,10 @@ class _AdminChatRoomsScreenState extends State<AdminChatRoomsScreen> {
                   child: ListTile(
                     title: Text(
                       '$name',
-                      style: TextStyle(fontSize: 24.sp, color: Colors.black),
+                      style: TextStyle(
+                          fontSize: AppStyle.responsiveFont(
+                              fontSize: 24, context: context),
+                          color: Colors.black),
                     ),
                     subtitle: const Text('Tap to view conversation'),
                     onTap: () {

@@ -37,7 +37,17 @@ final class ProfilePageState extends HomeLayoutState {
 
 final class MessagePageState extends HomeLayoutState {
   @override
-  Widget get page => const ChatScreen();
+  Widget get page {
+    var userId = getIt<HiveManager>()
+        .retrievePerson<PatientModel>(HiveKeys.patientBox, 0)
+        .patientId ??
+        "";
+    if (userId == "iRLlMW6ShsMWwp4kjlzoTQj8v6k1") {
+      return const AdminChatRoomsScreen();
+    } else {
+      return const ChatScreen();
+    }
+  }
 }
 
 final class ReminderPageState extends HomeLayoutState {
