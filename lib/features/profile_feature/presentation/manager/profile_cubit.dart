@@ -20,6 +20,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   int age = 0;
   String gender = "male";
   String bloodType = "A";
+  String id = "";
 
   getProfileData() async {
     emit(ProfileLoading());
@@ -34,6 +35,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       height = res.healthRecord!.height!;
       weight = res.healthRecord!.weight!;
       gender = res.healthRecord!.gender!;
+      id = res.patientId! ;
     });
   }
 
@@ -42,6 +44,7 @@ class ProfileCubit extends Cubit<ProfileState> {
       name: nameController.text,
       email: emailController.text,
       phone: numberController.text,
+      patientId: id,
       isHeAssignHealthRecord: true,
       healthRecord: HealthRecord(
         height: height,
