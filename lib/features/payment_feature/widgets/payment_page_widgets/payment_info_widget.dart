@@ -1,46 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:swe_medical/core/utils/Model/PatientModel.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
+import 'package:swe_medical/features/home_feature/presentation/patient/data/model/AppointmentModel.dart';
 
 import 'info_line_widget.dart';
 class PaymentInfoWidget extends StatelessWidget {
   const PaymentInfoWidget({
     super.key,
+    required this.appointmentModel,
   });
-
+final AppointmentModel appointmentModel;
   @override
   Widget build(BuildContext context) {
-    return const Column(
+
+    return  Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         InfoLineWidget(
-          label: "Date/Hour",
-          field: "Month 24, Year / 10:00 aM",
+          label: "Your name",
+          field:appointmentModel.patientName??"",
         ),
         InfoLineWidget(
-          label: "Date/Hour",
-          field: "Month 24, Year / 10:00 aM",
+          label: "Date",
+          field: appointmentModel.dateTime??"",
         ),
+
         InfoLineWidget(
-          label: "Date/Hour",
-          field: "Month 24, Year / 10:00 aM",
+          label: "Pay status",
+          field: appointmentModel.isPaid??false?"Paid":"Not Paid",
         ),
-        Divider(
-          thickness: 1,
-          color: AppColor.lightPrimaryColor,
-          indent: 30,
-          endIndent: 30,
-        ),
-        InfoLineWidget(
-          label: "Date/Hour",
-          field: "Month 24, Year / 10:00 aM",
-        ),
-        InfoLineWidget(
-          label: "Date/Hour",
-          field: "Month 24, Year / 10:00 aM",
-        ),
-        InfoLineWidget(
-          label: "Date/Hour",
-          field: "Month 24, Year / 10:00 aM",
-        ),
+
       ],
     );
   }

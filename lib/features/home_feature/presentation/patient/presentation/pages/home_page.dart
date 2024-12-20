@@ -81,24 +81,14 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: AppColor.primaryColor,
                   ),
                   onPressed: () {
-                    PatientModel patientData = Helper.returnUser();
-                    AppointmentModel appointmentModel = AppointmentModel(
-                      date: Helper.dateToString(selectedDate),
-                      time: Helper.formatTime(selectTime),
-                      patientId: patientData.patientId,
-                      patientName: patientData.name,
-                      dateTime: "${Helper.dateToString(selectedDate)} ${Helper
-                          .formatTime(selectTime)}",
-                      patientGender: patientData.healthRecord?.gender,
-
-                    );
+                    AppointmentModel appointmentModel = getAppointmentData();
                     context.read<PatientHomeCubit>().addAppointment(
                         appointmentModel);
                   },
                   child: BlocConsumer<PatientHomeCubit, PatientHomeState>(
                     listener: (context, state) {
                       if(state is AddAppointmentSuccessState){
-                        context.push(AppRoute.payment);
+                        context.push(AppRoute.payment,extra: getAppointmentData());
                       }
                     },
                     builder: (context, state) {
@@ -121,6 +111,21 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  AppointmentModel getAppointmentData() {
+     PatientModel patientData = Helper.returnUser();
+    AppointmentModel appointmentModel = AppointmentModel(
+      date: Helper.dateToString(selectedDate),
+      time: Helper.formatTime(selectTime),
+      patientId: patientData.patientId,
+      patientName: patientData.name,
+      dateTime: "${Helper.dateToString(selectedDate)} ${Helper
+          .formatTime(selectTime)}",
+      patientGender: patientData.healthRecord?.gender,
+
+    );
+    return appointmentModel;
   }
 }
 
