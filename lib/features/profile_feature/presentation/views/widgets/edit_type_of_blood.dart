@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swe_medical/features/profile_feature/presentation/manager/profile_cubit.dart';
 
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_style.dart';
 
 
 class EditTypeOfBlood extends StatefulWidget {
-   EditTypeOfBlood({super.key, this.selectedItem});
+  const EditTypeOfBlood({super.key});
 
   @override
   _EditTypeOfBloodState createState() =>
       _EditTypeOfBloodState();
-  late String? selectedItem;
 }
 
 class _EditTypeOfBloodState extends State<EditTypeOfBlood> {
@@ -29,8 +30,8 @@ class _EditTypeOfBloodState extends State<EditTypeOfBlood> {
       ),
       child: DropdownButton<String>(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        value: widget.selectedItem,
-        hint: Text(widget.selectedItem??"",
+        value: context.read<ProfileCubit>().bloodType,
+        hint: Text(context.read<ProfileCubit>().bloodType,
             style: TextStyle(
                 fontSize:
                 AppStyle.responsiveFont(fontSize: 15, context: context),
@@ -51,7 +52,7 @@ class _EditTypeOfBloodState extends State<EditTypeOfBlood> {
         }).toList(),
         onChanged: (String? newValue) {
           setState(() {
-            widget.selectedItem = newValue;
+            context.read<ProfileCubit>().bloodType = newValue!;
           });
         },
       ),

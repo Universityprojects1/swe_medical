@@ -20,10 +20,6 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController nameController = TextEditingController();
-    TextEditingController numberController = TextEditingController();
     final formKey = GlobalKey<FormState>();
     return BlocProvider(
       create: (context) => ProfileCubit()..getProfileData(),
@@ -45,26 +41,22 @@ class _ProfilePageState extends State<ProfilePage> {
                         CustomEditTextField(
                           text: state.patientModel.name ?? "",
                           title: "Full Name",
-                          controller: nameController,
+                          controller:
+                              context.read<ProfileCubit>().nameController,
                         ),
                         const Gap(15),
                         CustomEditTextField(
                           text: state.patientModel.email ?? "",
                           title: "Email",
-                          controller: emailController,
+                          controller:
+                              context.read<ProfileCubit>().emailController,
                           validator: (p0) =>
                               ValidationService.validateEmail(p0),
                         ),
                         const Gap(15),
                         CustomEditTextField(
-                          text: "***************",
-                          title: "Password",
-                          isPassword: true,
-                          controller: passwordController,
-                        ),
-                        const Gap(15),
-                        CustomEditTextField(
-                          controller: numberController,
+                          controller:
+                              context.read<ProfileCubit>().numberController,
                           text: state.patientModel.phone ?? "",
                           title: "Mobile Number",
                         ),
@@ -90,14 +82,17 @@ class _ProfilePageState extends State<ProfilePage> {
                           height: state.patientModel.healthRecord!.height ?? 0,
                         ),
                         const Gap(20),
-                        EditTypeOfBlood(
-                          selectedItem:
-                              state.patientModel.healthRecord!.bloodType,
-                        ),
+                        const EditTypeOfBlood(),
                         const Gap(30),
                         Align(
                           alignment: Alignment.center,
-                          child: CustomSaveButton(onTap: () {}, title: "Save"),
+                          child: CustomSaveButton(
+                              onTap: () {
+                                context
+                                    .read<ProfileCubit>()
+                                    .updateProfileData();
+                              },
+                              title: "Save"),
                         ),
                       ],
                     ),

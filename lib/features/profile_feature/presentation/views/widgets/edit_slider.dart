@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:swe_medical/features/profile_feature/presentation/manager/profile_cubit.dart';
 import 'package:swe_medical/features/profile_feature/presentation/views/widgets/custom_container.dart';
 
 import '../../../../../core/utils/app_string.dart';
@@ -63,10 +65,15 @@ class _EditSliderState extends State<EditSlider> {
           widget: SliderWidget(
             onChange: (p0) {
               currentValue = p0.toInt();
-              if (widget.title == AppString.askAge) {
-              } else if (widget.title == AppString.askWeight) {
-              } else if (widget.title == AppString.askHeight) {}
-
+              if(widget.title==AppString.askAge){
+                context.read<ProfileCubit>().age=p0.toInt();
+              }
+              else if(widget.title==AppString.askWeight){
+                context.read<ProfileCubit>().weight=p0.toInt();
+              }
+              else if(widget.title==AppString.askHeight){
+                context.read<ProfileCubit>().height=p0.toInt();
+              }
               setState(() {});
             },
             currentValue: currentValue,
