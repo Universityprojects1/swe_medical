@@ -5,15 +5,16 @@ import '../../../../../core/utils/app_style.dart';
 
 
 class EditTypeOfBlood extends StatefulWidget {
-  const EditTypeOfBlood({super.key});
+   EditTypeOfBlood({super.key, this.selectedItem});
 
   @override
   _EditTypeOfBloodState createState() =>
       _EditTypeOfBloodState();
+  late String? selectedItem;
 }
 
 class _EditTypeOfBloodState extends State<EditTypeOfBlood> {
-  String? _selectedItem;
+
   final List<String> _items = ['A', 'B', 'AB', 'O'];
 
   @override
@@ -28,8 +29,8 @@ class _EditTypeOfBloodState extends State<EditTypeOfBlood> {
       ),
       child: DropdownButton<String>(
         padding: const EdgeInsets.symmetric(horizontal: 20),
-        value: _selectedItem,
-        hint: Text('Select Item',
+        value: widget.selectedItem,
+        hint: Text(widget.selectedItem??"",
             style: TextStyle(
                 fontSize:
                 AppStyle.responsiveFont(fontSize: 15, context: context),
@@ -50,7 +51,7 @@ class _EditTypeOfBloodState extends State<EditTypeOfBlood> {
         }).toList(),
         onChanged: (String? newValue) {
           setState(() {
-            _selectedItem = newValue;
+            widget.selectedItem = newValue;
           });
         },
       ),

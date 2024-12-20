@@ -17,7 +17,7 @@ class PatientModel extends HiveObject {
     name = json['name'];
     address = json['address'];
     email = json['email'];
-    phone = json['phone'];
+    phone = json['mobile'];
     healthRecord = json['healthRecord'] != null
         ? HealthRecord.fromJson(json['healthRecord'])
         : null;
@@ -62,7 +62,7 @@ class PatientModel extends HiveObject {
     map['name'] = name;
     map['address'] = address;
     map['email'] = email;
-    map['phone'] = phone;
+    map['mobile'] = phone;
     if (healthRecord != null) {
       map['healthRecord'] = healthRecord?.toJson();
     }

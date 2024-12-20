@@ -9,8 +9,9 @@ import '../../../../record_feature/presentation/widgets/gender_container_widget.
 
 class EditGender extends StatelessWidget {
   const EditGender({
-    super.key,
+    super.key, required this.gender,
   });
+  final String gender ;
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +27,16 @@ class EditGender extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
-         const CustomContainer(widget:  Row(
+         CustomContainer(widget:  Row(
            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
            children: [
              GenderContainerWidget(
                gender: Gender.male,
-               isSelected: false,
+               isSelected:gender == "male" ? true:false,
              ),
              GenderContainerWidget(
                gender: Gender.female,
-               isSelected: true,
+               isSelected:gender == "female" ? true:false,
              )
            ],
          ))
