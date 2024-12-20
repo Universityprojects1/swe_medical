@@ -1,9 +1,20 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
+import 'package:hive/hive.dart';
+import 'package:swe_medical/config/routes/routes.dart';
+import 'package:swe_medical/core/di/service_locator.dart';
+import 'package:swe_medical/core/utils/Model/PatientModel.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
+import 'package:swe_medical/core/utils/helper.dart';
+import 'package:swe_medical/features/home_feature/presentation/patient/data/model/AppointmentModel.dart';
 import 'package:time_slot/model/time_slot_Interval.dart';
 import 'package:time_slot/time_slot_from_interval.dart';
+
+import '../../../../../../core/cache/hive/hive_manager.dart';
+import '../manger/patient_home_cubit.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +25,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   DateTime selectedDate = DateTime.now();
+  DateTime selectTime = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -34,10 +46,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 child: EasyDateTimeLinePicker(
-                  focusedDate: DateTime.now(),
-                  firstDate: DateTime(2024, 3, 18),
+                  focusedDate: selectedDate,
+                  firstDate: DateTime.now(),
                   lastDate: DateTime(2030, 3, 18),
                   onDateChange: (date) {
+                    selectedDate = date;
+                    setState(() {});
                     // Handle the selected date.
                   },
                 ),
@@ -46,7 +60,7 @@ class _HomePageState extends State<HomePage> {
               TimesSlotGridViewFromInterval(
                 selectedColor: AppColor.primaryColor,
                 locale: "en",
-                initTime: selectedDate,
+                initTime: selectTime,
                 crossAxisCount: 4,
                 timeSlotInterval: const TimeSlotInterval(
                   start: TimeOfDay(hour: 10, minute: 00),
@@ -55,7 +69,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 onChange: (value) {
                   setState(() {
-                    selectedDate = value;
+                    selectTime = value;
                   });
                 },
               ),
@@ -67,11 +81,28 @@ class _HomePageState extends State<HomePage> {
                     backgroundColor: AppColor.primaryColor,
                   ),
                   onPressed: () {
-                    // Navigate to the next page.
+                    AppointmentModel appointmentModel = getAppointmentData();
+                    context.read<PatientHomeCubit>().addAppointment(
+                        appointmentModel);
                   },
-                  child: const Text(
-                    'Book Appointment',
-                    style: TextStyle(color: Colors.white),
+                  child: BlocConsumer<PatientHomeCubit, PatientHomeState>(
+                    listener: (context, state) {
+                      if(state is AddAppointmentSuccessState){
+                        context.push(AppRoute.payment,extra: getAppointmentData());
+                      }
+                    },
+                    builder: (context, state) {
+                      if(state is AddAppointmentLoadingState){
+                        return const CircularProgressIndicator();
+                      }
+                      else if(state is AddAppointmentErrorState){
+                        return Text(state.message);
+                      }
+                      return const Text(
+                        'Book Appointment',
+                        style: TextStyle(color: Colors.white),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -80,6 +111,21 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  AppointmentModel getAppointmentData() {
+     PatientModel patientData = Helper.returnUser();
+    AppointmentModel appointmentModel = AppointmentModel(
+      date: Helper.dateToString(selectedDate),
+      time: Helper.formatTime(selectTime),
+      patientId: patientData.patientId,
+      patientName: patientData.name,
+      dateTime: "${Helper.dateToString(selectedDate)} ${Helper
+          .formatTime(selectTime)}",
+      patientGender: patientData.healthRecord?.gender,
+
+    );
+    return appointmentModel;
   }
 }
 

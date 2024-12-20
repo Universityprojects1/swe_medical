@@ -9,19 +9,21 @@ final class HomePageState extends HomeLayoutState {
   @override
   Widget get page {
     var patient = getIt<HiveManager>()
-            .retrievePerson<PatientModel>(HiveKeys.patientBox, 0);
+        .retrievePerson<PatientModel>(HiveKeys.patientBox, 0);
 
-        "";
+    "";
     if (patient.patientId == "iRLlMW6ShsMWwp4kjlzoTQj8v6k1") {
       return const DoctorHomePage();
     } else {
-      if(patient.isHeAssignHealthRecord!??true){
-        return const HomePage();
+      if (patient.isHeAssignHealthRecord! ?? true) {
+        return BlocProvider(
+          create: (context) => PatientHomeCubit(getIt<PatientHomeRepo>()),
+          child: const HomePage(),
+        );
       }
-      else{
+      else {
         return const RecordPage();
       }
-
     }
   }
 }
@@ -30,8 +32,8 @@ final class ProfilePageState extends HomeLayoutState {
   @override
   Widget get page {
     var userId = getIt<HiveManager>()
-            .retrievePerson<PatientModel>(HiveKeys.patientBox, 0)
-            .patientId ??
+        .retrievePerson<PatientModel>(HiveKeys.patientBox, 0)
+        .patientId ??
         "";
     if (userId == "iRLlMW6ShsMWwp4kjlzoTQj8v6k1") {
       return const ProfileAdminPage();

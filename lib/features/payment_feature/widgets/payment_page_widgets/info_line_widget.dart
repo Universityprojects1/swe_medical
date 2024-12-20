@@ -16,6 +16,7 @@ class InfoLineWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
+            textAlign: TextAlign.start,
             label,
             style: TextStyle(
                 fontSize:
