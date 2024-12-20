@@ -4,5 +4,7 @@ import 'package:swe_medical/features/home_feature/presentation/patient/data/mode
 
 abstract class PatientHomeRepo{
   Future<Either<Failure,String>> addAppointment(AppointmentModel appointmentModel);
+  Future<Either<Failure,List<AppointmentModel>>> getAllAppointment( );
+
 
 }

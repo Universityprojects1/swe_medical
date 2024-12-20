@@ -21,7 +21,7 @@ class FireBaseHelper {
     return docRef;
   }
 
-  static DocumentReference<AppointmentModel> docRefForAppointmentFireStore(
+  static DocumentReference<AppointmentModel> docRefForAppointmentToFireStore(
       String dateTime, AppointmentModel appointmentModel) {
     var docRef = fireBaseFireStore
         .collection("Appointments")
@@ -31,6 +31,18 @@ class FireBaseHelper {
           toFirestore: (value, options) => value.toJson(),
         )
         .doc(dateTime);
+    return docRef;
+  }
+  static CollectionReference<AppointmentModel> collectionRefForAppointmentFromFireStore(
+      AppointmentModel appointmentModel) {
+    var docRef = fireBaseFireStore
+        .collection("Appointments")
+        .withConverter<AppointmentModel>(
+      fromFirestore: (snapshot, options) =>
+          AppointmentModel.fromJson(snapshot),
+      toFirestore: (value, options) => value.toJson(),
+    );
+
     return docRef;
   }
 }
