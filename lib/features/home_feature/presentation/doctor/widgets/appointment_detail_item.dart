@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:swe_medical/config/routes/routes.dart';
+import 'package:swe_medical/features/home_feature/presentation/patient/data/model/AppointmentModel.dart';
+import 'package:swe_medical/features/home_feature/presentation/patient/presentation/manger/doctor_home_cubit.dart';
 
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_string.dart';
@@ -8,64 +12,128 @@ import '../../../../../core/utils/app_style.dart';
 import '../../../../../generated/assets.dart';
 
 class AppointmentDetailItem extends StatelessWidget {
-  const AppointmentDetailItem({super.key});
+  const AppointmentDetailItem({super.key, required this.appointmentModel});
+
+  final AppointmentModel appointmentModel;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.maxFinite,
-      padding: const EdgeInsets.all(26),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Dr. Madison Clark, Ph.D.",
-                  style: AppStyle.style16MediumPrimaryColor(context),
-                ),
-                Text(
-                  AppString.patient,
-                  style: AppStyle.style14LightBlack(context),
-                ),
-              ],
-            ),
-          ),
-          const Gap(26),
-          const Row(
-            children: [
-              TimeContainer(
-                  icon: Assets.imagesBooking, data: "Sunday, 12 June"),
-              Gap(7),
-              TimeContainer(
-                  icon: Assets.imagesClockIcon, data: "9:30 AM - 10:00 AM"),
+    return Stack(
+      alignment: Alignment.topRight,
+      children: [
+        Container(
+          width: double.maxFinite,
+          padding: const EdgeInsets.all(26),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                offset: const Offset(0, 2),
+                blurRadius: 5,
+              ),
             ],
           ),
-          const Gap(10),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                AcceptAndDeclineButton(
-                  icon: Icons.check,
-                  onTap: () {},
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Gender: ${appointmentModel.patientGender}"),
+                      const Gap(5),
+                      Text("phone: ${appointmentModel.phone}"),
+                      const Gap(5),
+                      Text("weight: ${appointmentModel.weight}"),
+
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        appointmentModel.patientName ?? "No Name",
+                        style: AppStyle.style16MediumPrimaryColor(context),
+                      ),
+                      Text(
+                        AppString.patient,
+                        style: AppStyle.style14LightBlack(context),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const Gap(26),
+              Row(
+                children: [
+                  TimeContainer(
+                    icon: Assets.imagesBooking,
+                    data: appointmentModel.date ?? "No Date",
+                  ),
+                  const Gap(7),
+                  TimeContainer(
+                    icon: Assets.imagesClockIcon,
+                    data: appointmentModel.time ?? "No Time",
+                  ),
+                ],
+              ),
+              const Gap(10),
+              Align(
+                alignment: Alignment.bottomRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    AcceptAndDeclineButton(
+                      isConfirmed: appointmentModel.isConfirmed ?? false,
+                      icon: Icons.check,
+                      onTap: () {
+                        context
+                            .read<DoctorHomeCubit>()
+                            .confirmAppointment(appointmentModel.dateTime ?? "");
+                      },
+                    ),
+                    const Gap(10),
+                    appointmentModel.isConfirmed ?? false
+                        ? const SizedBox()
+                        :
+                    AcceptAndDeclineButton(
+                      isConfirmed: false,
+                      icon: Icons.close,
+                      onTap: () {
+                        context
+                            .read<DoctorHomeCubit>()
+                            .deleteAppointment(appointmentModel.dateTime ?? "");
+                      },
+                    ),
+                  ],
                 ),
-                const Gap(10),
-                AcceptAndDeclineButton(
-                  icon: Icons.close,
-                  onTap: () {
-                    // Decline
-                  },
-                ),
-              ],
+              )
+            ],
+          ),
+        ),
+        Container(
+          decoration:  BoxDecoration(
+            color: appointmentModel.isPaid??false? Colors.green:Colors.grey,
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(20),
+              bottomRight: Radius.circular(20),
             ),
-          )
-        ],
-      ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              appointmentModel.isPaid ?? false
+                  ? "Is Paid"
+                  : "Not Paid",
+              style:AppStyle.style14LightBlack(context),
+            ),
+          ),
+        )
+      ],
     );
   }
 }
@@ -107,10 +175,11 @@ class TimeContainer extends StatelessWidget {
 }
 
 class AcceptAndDeclineButton extends StatelessWidget {
-  const AcceptAndDeclineButton({super.key, required this.icon, this.onTap});
+  const AcceptAndDeclineButton({super.key, required this.icon, this.onTap, required this.isConfirmed});
 
   final IconData icon;
   final void Function()? onTap;
+  final bool isConfirmed ;
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +188,7 @@ class AcceptAndDeclineButton extends StatelessWidget {
       child: ClipOval(
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.transparent,
+            color: isConfirmed?  Colors.green : Colors.transparent,
             border: Border.all(color: AppColor.primaryColor),
             borderRadius: BorderRadius.circular(20),
           ),

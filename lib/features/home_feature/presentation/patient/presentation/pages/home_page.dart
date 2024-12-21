@@ -121,6 +121,12 @@ class _HomePageState extends State<HomePage> {
       dateTime:
           "${Helper.dateToString(selectedDate)} ${Helper.formatTime(selectTime)}",
       patientGender: patientData.healthRecord?.gender,
+
+      phone: patientData.phone,
+      bloodType: patientData.healthRecord?.bloodType,
+      height: patientData.healthRecord?.height.toString(),
+      weight: patientData.healthRecord?.weight.toString(),
+
     );
     return appointmentModel;
   }
