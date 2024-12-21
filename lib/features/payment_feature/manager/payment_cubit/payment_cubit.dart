@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:swe_medical/core/api/fire_base_helper.dart';
 import 'package:swe_medical/core/services/stripe_payment_services/models/payment_intent_input_model.dart';
+import 'package:swe_medical/features/home_feature/presentation/patient/data/model/AppointmentModel.dart';
 
 import '../../../../core/services/stripe_payment_services/service/strip_payment_service.dart';
 
@@ -23,5 +25,9 @@ class PaymentCubit extends Cubit<PaymentState> {
       emit(MakeStripePaymentErrorState());
       debugPrint(error.toString());
     }
+  }
+  confirmPaid(String dateTime)async{
+    await FireBaseHelper.docRefForAppointmentToFireStore(dateTime, AppointmentModel()).update({'is_paid':true});
+
   }
 }

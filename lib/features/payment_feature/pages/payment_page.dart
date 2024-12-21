@@ -36,7 +36,7 @@ class PaymentPage extends StatelessWidget {
             PaymentInfoWidget(
               appointmentModel: patient,
             ),
-            const GradientPayButtonWidget()
+             GradientPayButtonWidget(appointmentModel: patient),
           ],
         ),
       ),
