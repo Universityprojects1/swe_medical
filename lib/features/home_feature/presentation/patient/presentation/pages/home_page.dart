@@ -36,10 +36,11 @@ class _HomePageState extends State<HomePage> {
             children: [
               Theme(
                 data: ThemeData(
-                  colorScheme: ColorScheme.fromSwatch(
-                    brightness: Brightness.light,
-                    primarySwatch: Colors.cyan,
-                  ),
+                  colorScheme: ColorScheme.fromSeed(
+                      brightness: Brightness.light,
+                      seedColor: Colors.cyan,
+                      primary: AppColor.primaryColor,
+                      onPrimary: Colors.white),
                 ),
                 child: EasyDateTimeLinePicker(
                   focusedDate: selectedDate,
@@ -78,20 +79,21 @@ class _HomePageState extends State<HomePage> {
                   ),
                   onPressed: () {
                     AppointmentModel appointmentModel = getAppointmentData();
-                    context.read<PatientHomeCubit>().addAppointment(
-                        appointmentModel);
+                    context
+                        .read<PatientHomeCubit>()
+                        .addAppointment(appointmentModel);
                   },
                   child: BlocConsumer<PatientHomeCubit, PatientHomeState>(
                     listener: (context, state) {
-                      if(state is AddAppointmentSuccessState){
-                        context.push(AppRoute.payment,extra: getAppointmentData());
+                      if (state is AddAppointmentSuccessState) {
+                        context.push(AppRoute.payment,
+                            extra: getAppointmentData());
                       }
                     },
                     builder: (context, state) {
-                      if(state is AddAppointmentLoadingState){
+                      if (state is AddAppointmentLoadingState) {
                         return const CircularProgressIndicator();
-                      }
-                      else if(state is AddAppointmentErrorState){
+                      } else if (state is AddAppointmentErrorState) {
                         return Text(state.message);
                       }
                       return const Text(
@@ -110,16 +112,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   AppointmentModel getAppointmentData() {
-     PatientModel patientData = Helper.returnUser();
+    PatientModel patientData = Helper.returnUser();
     AppointmentModel appointmentModel = AppointmentModel(
       date: Helper.dateToString(selectedDate),
       time: Helper.formatTime(selectTime),
       patientId: patientData.patientId,
       patientName: patientData.name,
-      dateTime: "${Helper.dateToString(selectedDate)} ${Helper
-          .formatTime(selectTime)}",
+      dateTime:
+          "${Helper.dateToString(selectedDate)} ${Helper.formatTime(selectTime)}",
       patientGender: patientData.healthRecord?.gender,
-
     );
     return appointmentModel;
   }
