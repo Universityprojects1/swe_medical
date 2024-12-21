@@ -18,7 +18,7 @@ final class HomePageState extends HomeLayoutState {
         child: const DoctorHomePage(),
       );
     } else {
-      if (patient.isHeAssignHealthRecord! ?? true) {
+      if (patient.isHeAssignHealthRecord!) {
         return BlocProvider(
           create: (context) => PatientHomeCubit(getIt<PatientHomeRepo>()),
           child: const HomePage(),
@@ -61,7 +61,3 @@ final class MessagePageState extends HomeLayoutState {
   }
 }
 
-final class ReminderPageState extends HomeLayoutState {
-  @override
-  Widget get page => const ReminderPage();
-}

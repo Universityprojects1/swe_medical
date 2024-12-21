@@ -10,7 +10,6 @@ import 'package:swe_medical/features/home_feature/presentation/doctor/pages/doct
 import 'package:swe_medical/features/home_feature/presentation/patient/presentation/manger/doctor_home_cubit.dart';
 import 'package:swe_medical/features/home_feature/presentation/patient/presentation/manger/patient_home_cubit.dart';
 import 'package:swe_medical/features/profile_feature/presentation/views/profile_page.dart';
-import 'package:swe_medical/features/reminder_feature/reminder_page.dart';
 
 
 
@@ -41,9 +40,6 @@ class HomeLayoutCubit extends Cubit<HomeLayoutState> {
         break;
       case 2:
         emit(ProfilePageState());
-        break;
-      case 3:
-        emit(ReminderPageState());
         break;
     }
   }
