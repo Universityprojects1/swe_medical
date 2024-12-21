@@ -15,7 +15,7 @@ final class HomePageState extends HomeLayoutState {
     if (patient.patientId == "iRLlMW6ShsMWwp4kjlzoTQj8v6k1") {
       return const DoctorHomePage();
     } else {
-      if (patient.isHeAssignHealthRecord! ?? true) {
+      if (patient.isHeAssignHealthRecord!) {
         return BlocProvider(
           create: (context) => PatientHomeCubit(getIt<PatientHomeRepo>()),
           child: const HomePage(),
@@ -58,7 +58,3 @@ final class MessagePageState extends HomeLayoutState {
   }
 }
 
-final class ReminderPageState extends HomeLayoutState {
-  @override
-  Widget get page => const ReminderPage();
-}
