@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:swe_medical/features/auth_feature/data/repo/auth_repo.dart';
@@ -13,9 +12,9 @@ import 'package:swe_medical/features/record_feature/data/repo/record_repo.dart';
 import 'package:swe_medical/features/splash_feature/spalsh_page.dart';
 
 import '../../core/di/service_locator.dart';
-import '../../features/auth_feature/data/repo/auth_repo_impl.dart';
 import '../../features/auth_feature/presentation/manger/auth_cubit.dart';
 import '../../features/auth_feature/presentation/views/sign_in_page.dart';
+import '../../features/profile_admin/presentation/views/profile_admin_page.dart';
 import '../../features/record_feature/presentation/manager/record_cubit.dart';
 import '../../features/record_feature/presentation/pages/record_page.dart';
 
@@ -28,6 +27,7 @@ class AppRoute {
   static const payment = '/payment';
   static const congratulationPayment = '/congratulation_payment';
   static const record = '/record';
+  static const doctorProfile = '/doctorProfile';
 
   static final router = GoRouter(
     routes: [
@@ -78,6 +78,10 @@ class AppRoute {
               create: (context) => RecordCubit(getIt<RecordRepo>()),
               child: const RecordPage(),
             ),
+      ),
+      GoRoute(
+        path: doctorProfile,
+        builder: (context, state) => const ProfileAdminPage(),
       ),
     ],
   );

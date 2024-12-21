@@ -3,17 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:hive/hive.dart';
 import 'package:swe_medical/config/routes/routes.dart';
-import 'package:swe_medical/core/di/service_locator.dart';
 import 'package:swe_medical/core/utils/Model/PatientModel.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
 import 'package:swe_medical/core/utils/helper.dart';
 import 'package:swe_medical/features/home_feature/presentation/patient/data/model/AppointmentModel.dart';
 import 'package:time_slot/model/time_slot_Interval.dart';
 import 'package:time_slot/time_slot_from_interval.dart';
-
-import '../../../../../../core/cache/hive/hive_manager.dart';
 import '../manger/patient_home_cubit.dart';
 
 class HomePage extends StatefulWidget {
@@ -40,9 +36,9 @@ class _HomePageState extends State<HomePage> {
             children: [
               Theme(
                 data: ThemeData(
-                  colorScheme: ColorScheme.fromSeed(
+                  colorScheme: ColorScheme.fromSwatch(
                     brightness: Brightness.light,
-                    seedColor: AppColor.primaryColor,
+                    primarySwatch: Colors.cyan,
                   ),
                 ),
                 child: EasyDateTimeLinePicker(
