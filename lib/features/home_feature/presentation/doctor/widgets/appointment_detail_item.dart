@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:swe_medical/config/routes/routes.dart';
 import 'package:swe_medical/features/home_feature/presentation/patient/data/model/AppointmentModel.dart';
+import 'package:swe_medical/features/home_feature/presentation/patient/presentation/manger/doctor_home_cubit.dart';
 
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_string.dart';
@@ -66,14 +69,25 @@ class AppointmentDetailItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 AcceptAndDeclineButton(
+                  isConfirmed: appointmentModel.isConfirmed ?? false,
                   icon: Icons.check,
-                  onTap: () {},
+                  onTap: () {
+                    context
+                        .read<DoctorHomeCubit>()
+                        .confirmAppointment(appointmentModel.dateTime ?? "");
+                  },
                 ),
                 const Gap(10),
+                appointmentModel.isConfirmed ?? false
+                    ? const SizedBox()
+                    :
                 AcceptAndDeclineButton(
+                  isConfirmed: false,
                   icon: Icons.close,
                   onTap: () {
-                    // Decline
+                    context
+                        .read<DoctorHomeCubit>()
+                        .deleteAppointment(appointmentModel.dateTime ?? "");
                   },
                 ),
               ],
@@ -122,10 +136,11 @@ class TimeContainer extends StatelessWidget {
 }
 
 class AcceptAndDeclineButton extends StatelessWidget {
-  const AcceptAndDeclineButton({super.key, required this.icon, this.onTap});
+  const AcceptAndDeclineButton({super.key, required this.icon, this.onTap, required this.isConfirmed});
 
   final IconData icon;
   final void Function()? onTap;
+  final bool isConfirmed ;
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +149,7 @@ class AcceptAndDeclineButton extends StatelessWidget {
       child: ClipOval(
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.transparent,
+            color: isConfirmed?  Colors.green : Colors.transparent,
             border: Border.all(color: AppColor.primaryColor),
             borderRadius: BorderRadius.circular(20),
           ),
