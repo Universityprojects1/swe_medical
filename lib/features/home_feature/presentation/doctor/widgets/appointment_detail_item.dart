@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:swe_medical/features/home_feature/presentation/patient/data/model/AppointmentModel.dart';
 
 import '../../../../../core/utils/app_color.dart';
 import '../../../../../core/utils/app_string.dart';
@@ -8,7 +9,9 @@ import '../../../../../core/utils/app_style.dart';
 import '../../../../../generated/assets.dart';
 
 class AppointmentDetailItem extends StatelessWidget {
-  const AppointmentDetailItem({super.key});
+  const AppointmentDetailItem({super.key, required this.appointmentModel});
+
+  final AppointmentModel appointmentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,30 +21,42 @@ class AppointmentDetailItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Align(
-            alignment: Alignment.topRight,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Dr. Madison Clark, Ph.D.",
-                  style: AppStyle.style16MediumPrimaryColor(context),
-                ),
-                Text(
-                  AppString.patient,
-                  style: AppStyle.style14LightBlack(context),
-                ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Gender: ${appointmentModel.patientGender}"),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    appointmentModel.patientName ?? "No Name",
+                    style: AppStyle.style16MediumPrimaryColor(context),
+                  ),
+                  Text(
+                    AppString.patient,
+                    style: AppStyle.style14LightBlack(context),
+                  ),
+                ],
+              ),
+            ],
           ),
           const Gap(26),
-          const Row(
+          Row(
             children: [
               TimeContainer(
-                  icon: Assets.imagesBooking, data: "Sunday, 12 June"),
-              Gap(7),
+                icon: Assets.imagesBooking,
+                data: appointmentModel.date ?? "No Date",
+              ),
+              const Gap(7),
               TimeContainer(
-                  icon: Assets.imagesClockIcon, data: "9:30 AM - 10:00 AM"),
+                icon: Assets.imagesClockIcon,
+                data: appointmentModel.time ?? "No Time",
+              ),
             ],
           ),
           const Gap(10),
