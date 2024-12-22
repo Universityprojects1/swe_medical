@@ -47,6 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   text: "Your name",
                   title: "Full Name",
                   controller: nameController,
+                  validator: (p0) => ValidationService.validateEmpty(p0,"name"),
                 ),
                 const Gap(15),
                 CustomTextField(
@@ -61,12 +62,22 @@ class _SignUpPageState extends State<SignUpPage> {
                   title: "Password",
                   isPassword: true,
                   controller: passwordController,
+                  validator: (p0) => ValidationService.validatePassword(p0),
+                ),
+                const Gap(15),
+                CustomTextField(
+                  text: "***************",
+                  title: "Confirm Password",
+                  isPassword: true,
+                  controller: TextEditingController(),
+                  validator: (p0) => ValidationService.validateConfirmPassword(p0??"",passwordController.text),
                 ),
                 const Gap(15),
                 CustomTextField(
                   controller: numberController,
                   text: "Your Number",
                   title: "Mobile Number",
+                  validator: (p0) => ValidationService.validateEmpty(p0,"Enter Number"),
                 ),
                 const Gap(30),
                 Align(

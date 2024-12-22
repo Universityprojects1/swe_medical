@@ -69,6 +69,7 @@ class _SignInPageState extends State<SignInPage> {
                   text: "***************",
                   title: "Password",
                   isPassword: true,
+                  validator: (p0) => ValidationService.validatePassword(p0),
                 ),
                 const Gap(5),
                 InkWell(

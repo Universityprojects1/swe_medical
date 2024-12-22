@@ -77,4 +77,13 @@ Prefix is 10, 11, 12 or 15 only""";
   static bool hasMinLength(String password) {
     return RegExp(r'^(?=.{8,})').hasMatch(password);
   }
+  static String? validateConfirmPassword(String confirmPassword, String originalPassword) {
+    if (confirmPassword.isEmpty) {
+      return 'Confirm password is required';
+    }
+    if (confirmPassword != originalPassword) {
+      return 'Passwords do not match';
+    }
+    return null;
+  }
 }
