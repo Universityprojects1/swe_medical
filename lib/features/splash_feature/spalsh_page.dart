@@ -27,7 +27,7 @@ class _SplashBodyState extends State<SplashBody> {
           GoRouter.of(context).pushReplacement(AppRoute.homeLayout);
         }
         else {
-          GoRouter.of(context).pushReplacement(AppRoute.signIn);
+          GoRouter.of(context).pushReplacement(AppRoute.onBoarding);
         }
       },
     );

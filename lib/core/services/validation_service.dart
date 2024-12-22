@@ -18,14 +18,15 @@ class ValidationService {
       return 'You must enter your password';
     }
 
-    var regex = RegExp(
-      r"(?=^.{8,}$)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$",
-    );
-
-    if (!regex.hasMatch(value)) {
-      return 'Must contains A-Z, a-z, @-#-&.. , 1-9';
+    // Check the length of the password
+    if (value.length < 8 || value.length > 18) {
+      return 'Password must be between 8 and 18 characters';
     }
 
+    // Check for at least one uppercase letter
+    if (!value.contains(RegExp(r'[A-Z]'))) {
+      return 'Password must contain at least one uppercase letter';
+    }
     return null;
   }
 

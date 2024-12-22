@@ -13,6 +13,7 @@ import 'package:swe_medical/features/splash_feature/spalsh_page.dart';
 
 import '../../core/di/service_locator.dart';
 import '../../features/auth_feature/presentation/manger/auth_cubit.dart';
+import '../../features/auth_feature/presentation/views/onboarding_screen.dart';
 import '../../features/auth_feature/presentation/views/sign_in_page.dart';
 import '../../features/profile_admin/presentation/views/profile_admin_page.dart';
 import '../../features/record_feature/presentation/manager/record_cubit.dart';
@@ -28,6 +29,7 @@ class AppRoute {
   static const congratulationPayment = '/congratulation_payment';
   static const record = '/record';
   static const doctorProfile = '/doctorProfile';
+  static const onBoarding = '/onboarding';
 
   static final router = GoRouter(
     routes: [
@@ -82,6 +84,10 @@ class AppRoute {
       GoRoute(
         path: doctorProfile,
         builder: (context, state) => const ProfileAdminPage(),
+      ),
+      GoRoute(
+        path: onBoarding,
+        builder: (context, state) =>  const OnboardingScreen(),
       ),
     ],
   );
