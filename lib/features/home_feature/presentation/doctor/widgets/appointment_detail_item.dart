@@ -49,7 +49,6 @@ class AppointmentDetailItem extends StatelessWidget {
                       Text("phone: ${appointmentModel.phone}"),
                       const Gap(5),
                       Text("weight: ${appointmentModel.weight}"),
-
                     ],
                   ),
                   Column(
@@ -91,23 +90,26 @@ class AppointmentDetailItem extends StatelessWidget {
                       isConfirmed: appointmentModel.isConfirmed ?? false,
                       icon: Icons.check,
                       onTap: () {
-                        context
-                            .read<DoctorHomeCubit>()
-                            .confirmAppointment(appointmentModel.dateTime ?? "");
+                        context.read<DoctorHomeCubit>().confirmAppointment(
+                            appointmentModel.dateTime ?? "");
                       },
                     ),
                     const Gap(10),
                     appointmentModel.isConfirmed ?? false
                         ? const SizedBox()
-                        :
-                    AcceptAndDeclineButton(
+                        : AcceptAndDeclineButton(
+                            isConfirmed: false,
+                            icon: Icons.close,
+                            onTap: () {
+                              context.read<DoctorHomeCubit>().deleteAppointment(
+                                  appointmentModel.dateTime ?? "");
+                            },
+                          ),
+                    const Gap(10),
+                    const AcceptAndDeclineButton(
+
+                      icon: Icons.date_range,
                       isConfirmed: false,
-                      icon: Icons.close,
-                      onTap: () {
-                        context
-                            .read<DoctorHomeCubit>()
-                            .deleteAppointment(appointmentModel.dateTime ?? "");
-                      },
                     ),
                   ],
                 ),
@@ -116,8 +118,9 @@ class AppointmentDetailItem extends StatelessWidget {
           ),
         ),
         Container(
-          decoration:  BoxDecoration(
-            color: appointmentModel.isPaid??false? Colors.green:Colors.grey,
+          decoration: BoxDecoration(
+            color:
+                appointmentModel.isPaid ?? false ? Colors.green : Colors.grey,
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),
@@ -126,10 +129,8 @@ class AppointmentDetailItem extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              appointmentModel.isPaid ?? false
-                  ? "Is Paid"
-                  : "Not Paid",
-              style:AppStyle.style14LightBlack(context),
+              appointmentModel.isPaid ?? false ? "Is Paid" : "Not Paid",
+              style: AppStyle.style14LightBlack(context),
             ),
           ),
         )
@@ -175,11 +176,12 @@ class TimeContainer extends StatelessWidget {
 }
 
 class AcceptAndDeclineButton extends StatelessWidget {
-  const AcceptAndDeclineButton({super.key, required this.icon, this.onTap, required this.isConfirmed});
+  const AcceptAndDeclineButton(
+      {super.key, required this.icon, this.onTap, required this.isConfirmed});
 
   final IconData icon;
   final void Function()? onTap;
-  final bool isConfirmed ;
+  final bool isConfirmed;
 
   @override
   Widget build(BuildContext context) {
@@ -188,7 +190,7 @@ class AcceptAndDeclineButton extends StatelessWidget {
       child: ClipOval(
         child: Container(
           decoration: BoxDecoration(
-            color: isConfirmed?  Colors.green : Colors.transparent,
+            color: isConfirmed ? Colors.green : Colors.transparent,
             border: Border.all(color: AppColor.primaryColor),
             borderRadius: BorderRadius.circular(20),
           ),

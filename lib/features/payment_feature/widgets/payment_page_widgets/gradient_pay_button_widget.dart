@@ -4,19 +4,22 @@ import 'package:go_router/go_router.dart';
 import 'package:swe_medical/config/routes/routes.dart';
 import 'package:swe_medical/core/utils/app_color.dart';
 import 'package:swe_medical/core/utils/app_style.dart';
+import 'package:swe_medical/features/home_feature/presentation/patient/data/model/AppointmentModel.dart';
 import 'package:swe_medical/features/payment_feature/manager/payment_cubit/payment_cubit.dart';
 
 class GradientPayButtonWidget extends StatelessWidget {
   const GradientPayButtonWidget({
     super.key,
+    required this.appointmentModel,
   });
-
+final AppointmentModel appointmentModel;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<PaymentCubit, PaymentState>(
       listener: (context, state) {
         if (state is MakeStripePaymentSuccessState) {
           GoRouter.of(context).pushReplacement(AppRoute.congratulationPayment);
+          context.read<PaymentCubit>().confirmPaid(appointmentModel.dateTime??"");
         }
       },
       builder: (context, state) {
