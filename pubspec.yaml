@@ -47,7 +47,7 @@ dependencies:
   # Enhanced dropdown button widget
   dropdown_button2: ^2.3.9
   # Internationalization and localization
-  intl: ^0.20.0
+  intl: ^0.19.0
   # Dio request/response logger
   pretty_dio_logger: ^1.4.0
   # Hive database integration for Flutter
@@ -60,6 +60,23 @@ dependencies:
   firebase_core: ^3.8.0
   # iOS style icons
   cupertino_icons: ^1.0.8
+  stylish_bottom_bar: ^1.1.0
+  easy_date_timeline: ^2.0.4
+  time_slot: ^1.0.0
+  cloud_firestore:
+  firebase_database:
+  firebase_storage:
+  flutter_screenutil:
+  image_picker: ^1.1.2
+  firebase_auth: ^5.3.4
+
+  dartz: ^0.10.1
+
+  syncfusion_flutter_sliders: ^28.1.33
+  device_preview: ^1.1.0
+  flutter_stripe: ^11.3.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -126,3 +143,6 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+  assets:
+    - assets/images/
+

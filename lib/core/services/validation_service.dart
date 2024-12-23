@@ -18,14 +18,15 @@ class ValidationService {
       return 'You must enter your password';
     }
 
-    var regex = RegExp(
-      r"(?=^.{8,}$)(?=.*[!@#$%^&*]+)(?![.\\n])(?=.*[A-Z])(?=.*[a-z]).*$",
-    );
-
-    if (!regex.hasMatch(value)) {
-      return 'Must contains A-Z, a-z, @-#-&.. , 1-9';
+    // Check the length of the password
+    if (value.length < 8 || value.length > 18) {
+      return 'Password must be between 8 and 18 characters';
     }
 
+    // Check for at least one uppercase letter
+    if (!value.contains(RegExp(r'[A-Z]'))) {
+      return 'Password must contain at least one uppercase letter';
+    }
     return null;
   }
 
@@ -75,5 +76,14 @@ Prefix is 10, 11, 12 or 15 only""";
 
   static bool hasMinLength(String password) {
     return RegExp(r'^(?=.{8,})').hasMatch(password);
+  }
+  static String? validateConfirmPassword(String confirmPassword, String originalPassword) {
+    if (confirmPassword.isEmpty) {
+      return 'Confirm password is required';
+    }
+    if (confirmPassword != originalPassword) {
+      return 'Passwords do not match';
+    }
+    return null;
   }
 }
